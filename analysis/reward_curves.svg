@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600">
+<rect width="100%" height="100%" fill="white"/>
+<text x="500" y="32" text-anchor="middle" font-family="sans-serif" font-size="22" font-weight="bold">Twinkle vs VERL Reward Trend (10-step block means)</text>
+<line x1="85" y1="525.0" x2="965" y2="525.0" stroke="#e5e7eb"/>
+<text x="73" y="530.0" text-anchor="end" font-family="sans-serif" font-size="13">0.0</text>
+<line x1="85" y1="478.5" x2="965" y2="478.5" stroke="#e5e7eb"/>
+<text x="73" y="483.5" text-anchor="end" font-family="sans-serif" font-size="13">0.1</text>
+<line x1="85" y1="432.0" x2="965" y2="432.0" stroke="#e5e7eb"/>
+<text x="73" y="437.0" text-anchor="end" font-family="sans-serif" font-size="13">0.2</text>
+<line x1="85" y1="385.5" x2="965" y2="385.5" stroke="#e5e7eb"/>
+<text x="73" y="390.5" text-anchor="end" font-family="sans-serif" font-size="13">0.3</text>
+<line x1="85" y1="339.0" x2="965" y2="339.0" stroke="#e5e7eb"/>
+<text x="73" y="344.0" text-anchor="end" font-family="sans-serif" font-size="13">0.4</text>
+<line x1="85" y1="292.5" x2="965" y2="292.5" stroke="#e5e7eb"/>
+<text x="73" y="297.5" text-anchor="end" font-family="sans-serif" font-size="13">0.5</text>
+<line x1="85" y1="246.0" x2="965" y2="246.0" stroke="#e5e7eb"/>
+<text x="73" y="251.0" text-anchor="end" font-family="sans-serif" font-size="13">0.6</text>
+<line x1="85" y1="199.5" x2="965" y2="199.5" stroke="#e5e7eb"/>
+<text x="73" y="204.5" text-anchor="end" font-family="sans-serif" font-size="13">0.7</text>
+<line x1="85" y1="153.0" x2="965" y2="153.0" stroke="#e5e7eb"/>
+<text x="73" y="158.0" text-anchor="end" font-family="sans-serif" font-size="13">0.8</text>
+<line x1="85" y1="106.5" x2="965" y2="106.5" stroke="#e5e7eb"/>
+<text x="73" y="111.5" text-anchor="end" font-family="sans-serif" font-size="13">0.9</text>
+<line x1="85" y1="60.0" x2="965" y2="60.0" stroke="#e5e7eb"/>
+<text x="73" y="65.0" text-anchor="end" font-family="sans-serif" font-size="13">1.0</text>
+<line x1="85.0" y1="60" x2="85.0" y2="525" stroke="#f1f5f9"/>
+<text x="85.0" y="550" text-anchor="middle" font-family="sans-serif" font-size="13">1</text>
+<line x1="255.3" y1="60" x2="255.3" y2="525" stroke="#f1f5f9"/>
+<text x="255.3" y="550" text-anchor="middle" font-family="sans-serif" font-size="13">25</text>
+<line x1="432.7" y1="60" x2="432.7" y2="525" stroke="#f1f5f9"/>
+<text x="432.7" y="550" text-anchor="middle" font-family="sans-serif" font-size="13">50</text>
+<line x1="610.2" y1="60" x2="610.2" y2="525" stroke="#f1f5f9"/>
+<text x="610.2" y="550" text-anchor="middle" font-family="sans-serif" font-size="13">75</text>
+<line x1="787.6" y1="60" x2="787.6" y2="525" stroke="#f1f5f9"/>
+<text x="787.6" y="550" text-anchor="middle" font-family="sans-serif" font-size="13">100</text>
+<line x1="965.0" y1="60" x2="965.0" y2="525" stroke="#f1f5f9"/>
+<text x="965.0" y="550" text-anchor="middle" font-family="sans-serif" font-size="13">125</text>
+<line x1="85" y1="60" x2="85" y2="525" stroke="#111827"/>
+<line x1="85" y1="525" x2="965" y2="525" stroke="#111827"/>
+<text x="525.0" y="578" text-anchor="middle" font-family="sans-serif" font-size="15">Training step</text>
+<text x="22" y="292.5" text-anchor="middle" transform="rotate(-90 22 292.5)" font-family="sans-serif" font-size="15">Mean reward</text>
+<polyline points="116.9,337.5 187.9,363.0 258.9,336.8 329.8,261.3 400.8,203.9 471.8,204.6 542.7,159.5 613.7,142.8 684.7,121.8 755.6,106.5 826.6,96.3 897.6,110.9 950.8,108.0" fill="none" stroke="#2563eb" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="116.9" cy="337.5" r="4.5" fill="white" stroke="#2563eb" stroke-width="3"><title>Twinkle steps around 5.5: 0.403125</title></circle>
+<circle cx="187.9" cy="363.0" r="4.5" fill="white" stroke="#2563eb" stroke-width="3"><title>Twinkle steps around 15.5: 0.348438</title></circle>
+<circle cx="258.9" cy="336.8" r="4.5" fill="white" stroke="#2563eb" stroke-width="3"><title>Twinkle steps around 25.5: 0.404687</title></circle>
+<circle cx="329.8" cy="261.3" r="4.5" fill="white" stroke="#2563eb" stroke-width="3"><title>Twinkle steps around 35.5: 0.567187</title></circle>
+<circle cx="400.8" cy="203.9" r="4.5" fill="white" stroke="#2563eb" stroke-width="3"><title>Twinkle steps around 45.5: 0.690625</title></circle>
+<circle cx="471.8" cy="204.6" r="4.5" fill="white" stroke="#2563eb" stroke-width="3"><title>Twinkle steps around 55.5: 0.689063</title></circle>
+<circle cx="542.7" cy="159.5" r="4.5" fill="white" stroke="#2563eb" stroke-width="3"><title>Twinkle steps around 65.5: 0.785937</title></circle>
+<circle cx="613.7" cy="142.8" r="4.5" fill="white" stroke="#2563eb" stroke-width="3"><title>Twinkle steps around 75.5: 0.821875</title></circle>
+<circle cx="684.7" cy="121.8" r="4.5" fill="white" stroke="#2563eb" stroke-width="3"><title>Twinkle steps around 85.5: 0.867188</title></circle>
+<circle cx="755.6" cy="106.5" r="4.5" fill="white" stroke="#2563eb" stroke-width="3"><title>Twinkle steps around 95.5: 0.900000</title></circle>
+<circle cx="826.6" cy="96.3" r="4.5" fill="white" stroke="#2563eb" stroke-width="3"><title>Twinkle steps around 105.5: 0.921875</title></circle>
+<circle cx="897.6" cy="110.9" r="4.5" fill="white" stroke="#2563eb" stroke-width="3"><title>Twinkle steps around 115.5: 0.890625</title></circle>
+<circle cx="950.8" cy="108.0" r="4.5" fill="white" stroke="#2563eb" stroke-width="3"><title>Twinkle steps around 123.0: 0.896875</title></circle>
+<line x1="730" y1="78" x2="765" y2="78" stroke="#2563eb" stroke-width="4"/>
+<text x="775" y="83" font-family="sans-serif" font-size="14">Twinkle</text>
+<polyline points="116.9,365.2 187.9,360.8 258.9,355.0 329.8,327.4 400.8,309.9 471.8,344.1 542.7,333.2 613.7,336.8 684.7,339.7 755.6,349.9 826.6,330.3 897.6,355.0 950.8,320.1" fill="none" stroke="#dc2626" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="116.9" cy="365.2" r="4.5" fill="white" stroke="#dc2626" stroke-width="3"><title>VERL steps around 5.5: 0.343750</title></circle>
+<circle cx="187.9" cy="360.8" r="4.5" fill="white" stroke="#dc2626" stroke-width="3"><title>VERL steps around 15.5: 0.353125</title></circle>
+<circle cx="258.9" cy="355.0" r="4.5" fill="white" stroke="#dc2626" stroke-width="3"><title>VERL steps around 25.5: 0.365625</title></circle>
+<circle cx="329.8" cy="327.4" r="4.5" fill="white" stroke="#dc2626" stroke-width="3"><title>VERL steps around 35.5: 0.425000</title></circle>
+<circle cx="400.8" cy="309.9" r="4.5" fill="white" stroke="#dc2626" stroke-width="3"><title>VERL steps around 45.5: 0.462500</title></circle>
+<circle cx="471.8" cy="344.1" r="4.5" fill="white" stroke="#dc2626" stroke-width="3"><title>VERL steps around 55.5: 0.389062</title></circle>
+<circle cx="542.7" cy="333.2" r="4.5" fill="white" stroke="#dc2626" stroke-width="3"><title>VERL steps around 65.5: 0.412500</title></circle>
+<circle cx="613.7" cy="336.8" r="4.5" fill="white" stroke="#dc2626" stroke-width="3"><title>VERL steps around 75.5: 0.404687</title></circle>
+<circle cx="684.7" cy="339.7" r="4.5" fill="white" stroke="#dc2626" stroke-width="3"><title>VERL steps around 85.5: 0.398438</title></circle>
+<circle cx="755.6" cy="349.9" r="4.5" fill="white" stroke="#dc2626" stroke-width="3"><title>VERL steps around 95.5: 0.376563</title></circle>
+<circle cx="826.6" cy="330.3" r="4.5" fill="white" stroke="#dc2626" stroke-width="3"><title>VERL steps around 105.5: 0.418750</title></circle>
+<circle cx="897.6" cy="355.0" r="4.5" fill="white" stroke="#dc2626" stroke-width="3"><title>VERL steps around 115.5: 0.365625</title></circle>
+<circle cx="950.8" cy="320.1" r="4.5" fill="white" stroke="#dc2626" stroke-width="3"><title>VERL steps around 123.0: 0.440625</title></circle>
+<line x1="730" y1="104" x2="765" y2="104" stroke="#dc2626" stroke-width="4"/>
+<text x="775" y="109" font-family="sans-serif" font-size="14">VERL</text>
+</svg>

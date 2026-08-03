@@ -69,3 +69,13 @@ Twinkle 使用 `GSM8KProcessor + GSM8KAccuracyReward`；VERL 通过 `main_genera
 ## License
 
 Twinkle 和 VERL 源码快照均保留原始 `LICENSE` 和 `Notice.txt`。
+
+## 负责人复核入口
+
+- 评测链路及脚本变化：`docs/evaluation_protocol.md`
+- 实际训练与测试数据：`data/README.md`
+- Twinkle/VERL reward 对比曲线：`analysis/reward_curves.svg`
+- 曲线底层分段均值：`analysis/reward_block_means.csv`
+- 两个容器运行时版本：`manifests/runtime/`
+- Qwen3-4B 文件身份：`manifests/base_model.sha256`
+- 负责人原始 ZIP 身份：`manifests/owner_zip.sha256`
