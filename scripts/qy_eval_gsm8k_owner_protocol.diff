@@ -1,0 +1,62 @@
+--- /workspace/twinkle_verl_cmp_b079_npu/cookbook/rl/eval_gsm8k_areal.py	2026-07-28 01:07:43.612743607 +0000
++++ /mnt/lv_model/npu60005420a/qy_container_scripts/qy_eval_gsm8k_owner_protocol.py	2026-07-30 08:03:05.382469599 +0000
+@@ -1,5 +1,5 @@
+ # Copyright (c) ModelScope Contributors. All rights reserved.
+-"""Evaluate a Qwen3 base model or LoRA with the AReaL GSM8K protocol."""
++"""Evaluate a Qwen3 LoRA with the owner-aligned Twinkle GSM8K protocol."""
+ 
+ from __future__ import annotations
+ 
+@@ -13,8 +13,8 @@
+ from twinkle import DeviceGroup, DeviceMesh, Platform, get_logger
+ from twinkle.data_format import SamplingParams
+ from twinkle.hub import HubOperation
+-from twinkle.preprocessor import AReaLGSM8KProcessor
+-from twinkle.reward import MathVerifyAccuracyReward
++from twinkle.preprocessor import GSM8KProcessor
++from twinkle.reward import GSM8KAccuracyReward
+ from twinkle.sampler import vLLMSampler
+ 
+ logger = get_logger()
+@@ -123,7 +123,7 @@
+     parser.add_argument('--split', default='test')
+     parser.add_argument('--data-num', type=int, default=0, help='0 evaluates the complete split')
+     parser.add_argument('--adapter-path', default='')
+-    parser.add_argument('--adapter-name', default='gsm8k_areal_pk_lora')
++    parser.add_argument('--adapter-name', default='gsm8k_accuracy_lora')
+     parser.add_argument('--max-lora-rank', type=int, default=16)
+     parser.add_argument('--batch-size', type=int, default=16)
+     parser.add_argument('--max-tokens', type=int, default=1024)
+@@ -150,10 +150,10 @@
+     if args.data_num > 0:
+         rows = rows[:args.data_num]
+ 
+-    processor = AReaLGSM8KProcessor()
++    processor = GSM8KProcessor()
+     prompts = [processor.preprocess(row) for row in rows]
+     sampler = build_sampler(args)
+-    reward_fn = MathVerifyAccuracyReward()
++    reward_fn = GSM8KAccuracyReward()
+     sampling_params = SamplingParams(
+         max_tokens=args.max_tokens,
+         num_samples=args.num_samples,
+@@ -205,7 +205,7 @@
+             sample_count += len(rewards)
+             completion_lengths.extend(lengths)
+             logger.info(
+-                'GSM8K AReaL eval: prompts=%s/%s samples=%s accuracy=%.4f',
++                'GSM8K owner eval: prompts=%s/%s samples=%s accuracy=%.4f',
+                 min(offset + len(batch), len(prompts)),
+                 len(prompts),
+                 sample_count,
+@@ -221,8 +221,8 @@
+         'protocol': {
+             'template': 'Template',
+             'enable_thinking': args.enable_thinking,
+-            'processor': 'AReaLGSM8KProcessor',
+-            'reward': 'MathVerifyAccuracyReward',
++            'processor': 'GSM8KProcessor',
++            'reward': 'GSM8KAccuracyReward',
+             'temperature': args.temperature,
+             'top_p': args.top_p,
+             'max_tokens': args.max_tokens,

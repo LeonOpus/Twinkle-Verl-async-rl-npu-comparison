@@ -1,0 +1,1220 @@
+[2026-07-30 19:18:56,420][torch_npu.env][INFO] - get env RAY_USAGE_STATS_ENABLED = 0
+2026-07-30 19:19:02,464	INFO worker.py:2003 -- Started a local Ray instance. View the dashboard at [1m[32mhttp://127.0.0.1:8265 [39m[22m
+/usr/local/python3.11.15/lib/python3.11/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+{'actor_rollout_ref': {'actor': {'_target_': 'verl.workers.config.FSDPActorConfig',
+                                 'calculate_entropy': False,
+                                 'calculate_sum_pi_squared': False,
+                                 'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig',
+                                                'async_save': False,
+                                                'load_contents': ['model',
+                                                                  'optimizer',
+                                                                  'extra'],
+                                                'save_contents': ['model',
+                                                                  'optimizer',
+                                                                  'extra'],
+                                                'strict': True},
+                                 'clip_ratio': 0.2,
+                                 'clip_ratio_c': 3.0,
+                                 'clip_ratio_high': 0.2,
+                                 'clip_ratio_low': 0.2,
+                                 'data_loader_seed': 1,
+                                 'entropy_checkpointing': False,
+                                 'entropy_coeff': 0,
+                                 'entropy_from_logits_chunk_size': 2048,
+                                 'entropy_from_logits_with_chunking': False,
+                                 'freeze_vision_tower': False,
+                                 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig',
+                                                 'dtype': 'bfloat16',
+                                                 'entropy_checkpointing': False,
+                                                 'entropy_from_logits_chunk_size': 2048,
+                                                 'entropy_from_logits_with_chunking': False,
+                                                 'forward_only': False,
+                                                 'forward_prefetch': False,
+                                                 'fsdp_size': -1,
+                                                 'full_determinism': False,
+                                                 'model_dtype': 'fp32',
+                                                 'offload_policy': False,
+                                                 'optimizer_offload': False,
+                                                 'param_offload': False,
+                                                 'qat': {'_target_': 'verl.workers.config.QATEngineConfig',
+                                                         'activation_observer': 'static_minmax',
+                                                         'enable': False,
+                                                         'group_size': 16,
+                                                         'ignore_patterns': ['lm_head',
+                                                                             'embed_tokens',
+                                                                             're:.*mlp.gate$'],
+                                                         'mode': 'w4a16',
+                                                         'quantization_config_path': None},
+                                                 'reshard_after_forward': True,
+                                                 'seed': 1,
+                                                 'strategy': 'fsdp2',
+                                                 'ulysses_sequence_parallel_size': 1,
+                                                 'use_orig_params': False,
+                                                 'use_torch_compile': False,
+                                                 'wrap_policy': {'min_num_params': 0}},
+                                 'grad_clip': 1.0,
+                                 'kl_loss_coef': 0.001,
+                                 'kl_loss_type': 'low_var_kl',
+                                 'loss_agg_mode': 'token-mean',
+                                 'loss_scale_factor': None,
+                                 'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig',
+                                           'betas': [0.9, 0.999],
+                                           'clip_grad': 1.0,
+                                           'lr': 1.7e-05,
+                                           'lr_scheduler_type': 'constant',
+                                           'lr_warmup_steps': -1,
+                                           'lr_warmup_steps_ratio': 0.0,
+                                           'min_lr_ratio': 0.0,
+                                           'num_cycles': 0.5,
+                                           'optimizer': 'AdamW',
+                                           'optimizer_impl': 'torch.optim',
+                                           'override_optimizer_config': None,
+                                           'total_training_steps': -1,
+                                           'warmup_style': None,
+                                           'weight_decay': 0.01,
+                                           'zero_indexed_step': True},
+                                 'policy_loss': {'_target_': 'verl.workers.config.PolicyLossConfig',
+                                                 'clip_cov_lb': 1.0,
+                                                 'clip_cov_ratio': 0.0002,
+                                                 'clip_cov_ub': 5.0,
+                                                 'kl_cov_ratio': 0.0002,
+                                                 'loss_mode': 'vanilla',
+                                                 'ppo_kl_coef': 0.1},
+                                 'ppo_epochs': 1,
+                                 'ppo_max_token_len_per_gpu': 4096,
+                                 'ppo_micro_batch_size': None,
+                                 'ppo_micro_batch_size_per_gpu': None,
+                                 'ppo_mini_batch_size': 16,
+                                 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig',
+                                              'all_ranks': False,
+                                              'enable': False,
+                                              'ranks': [],
+                                              'save_path': 'outputs/profile',
+                                              'tool': None,
+                                              'tool_config': {'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig',
+                                                                      'analysis': True,
+                                                                      'contents': [],
+                                                                      'discrete': False,
+                                                                      'level': 'level0'},
+                                                              'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig',
+                                                                       'discrete': False},
+                                                              'precision_debugger': {'_target_': 'verl.utils.profiler.config.PrecisionDebuggerToolConfig',
+                                                                                     'config_path': None,
+                                                                                     'stages': None,
+                                                                                     'steps': None,
+                                                                                     'strict': False},
+                                                              'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig',
+                                                                        'contents': [],
+                                                                        'discrete': False,
+                                                                        'schedule': {'_target_': 'verl.utils.profiler.config.TorchProfilerScheduleConfig',
+                                                                                     'active': 0,
+                                                                                     'repeat': 0,
+                                                                                     'skip_first': 0,
+                                                                                     'wait': 0,
+                                                                                     'warmup': 0}},
+                                                              'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig',
+                                                                               'stack_depth': 32,
+                                                                               'trace_alloc_max_entries': 100000}}},
+                                 'qat': {'activation_observer': 'static_minmax',
+                                         'enable': False,
+                                         'group_size': 16,
+                                         'ignore_patterns': ['lm_head',
+                                                             'embed_tokens',
+                                                             're:.*mlp.gate$'],
+                                         'mode': 'w4a16',
+                                         'quantization_config_path': None},
+                                 'rollout_n': 1,
+                                 'router_replay': {'_target_': 'verl.workers.config.RouterReplayConfig',
+                                                   'mode': 'disabled',
+                                                   'record_file': None,
+                                                   'replay_file': None},
+                                 'shuffle': False,
+                                 'strategy': 'fsdp2',
+                                 'tau_neg': 1.05,
+                                 'tau_pos': 1.0,
+                                 'ulysses_sequence_parallel_size': 1,
+                                 'use_dynamic_bsz': True,
+                                 'use_fused_kernels': False,
+                                 'use_kl_loss': False,
+                                 'use_prefix_grouper': False,
+                                 'use_remove_padding': False,
+                                 'use_torch_compile': False},
+                       'hybrid_engine': True,
+                       'model': {'_target_': 'verl.workers.config.HFModelConfig',
+                                 'custom_chat_template': None,
+                                 'enable_activation_offload': False,
+                                 'enable_gradient_checkpointing': True,
+                                 'exclude_modules': None,
+                                 'external_lib': None,
+                                 'fused_kernel_options': {'impl_backend': 'torch'},
+                                 'hf_config_path': None,
+                                 'lora': {'a2a_experimental': False,
+                                          'adapter_path': None,
+                                          'alpha': 32,
+                                          'dropout': 0.0,
+                                          'dropout_position': 'pre',
+                                          'dtype': None,
+                                          'exclude_modules': [],
+                                          'freeze_language_model': True,
+                                          'freeze_vision_model': True,
+                                          'freeze_vision_projection': True,
+                                          'lora_A_init_method': 'xavier',
+                                          'lora_B_init_method': 'zero',
+                                          'merge': False,
+                                          'rank': 0,
+                                          'target_modules': ['linear_qkv',
+                                                             'linear_proj',
+                                                             'linear_fc1',
+                                                             'linear_fc2'],
+                                          'type': 'lora'},
+                                 'lora_adapter_path': None,
+                                 'lora_alpha': 16,
+                                 'lora_rank': 0,
+                                 'mtp': {'_target_': 'verl.workers.config.MtpConfig',
+                                         'detach_encoder': False,
+                                         'enable': False,
+                                         'enable_rollout': False,
+                                         'enable_train': False,
+                                         'method': 'mtp',
+                                         'mtp_loss_scaling_factor': 0.1,
+                                         'num_speculative_tokens': 1,
+                                         'speculative_algorithm': 'EAGLE',
+                                         'speculative_eagle_topk': 1,
+                                         'speculative_num_draft_tokens': 4,
+                                         'speculative_num_steps': 3},
+                                 'override_config': {},
+                                 'path': '/mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_verl_full125_noeval_final_npu23/merged_hf_v125_for_eval',
+                                 'target_modules': 'all-linear',
+                                 'tiled_mlp': {'enabled': False,
+                                               'num_shards': 4},
+                                 'tokenizer_path': None,
+                                 'trust_remote_code': False,
+                                 'use_fused_kernels': False,
+                                 'use_liger': False,
+                                 'use_remove_padding': False,
+                                 'use_shm': False},
+                       'nccl_timeout': 600,
+                       'ref': {'_target_': 'verl.workers.config.FSDPActorConfig',
+                               'entropy_checkpointing': False,
+                               'entropy_from_logits_chunk_size': 2048,
+                               'entropy_from_logits_with_chunking': False,
+                               'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig',
+                                               'dtype': 'bfloat16',
+                                               'entropy_checkpointing': False,
+                                               'entropy_from_logits_chunk_size': 2048,
+                                               'entropy_from_logits_with_chunking': False,
+                                               'forward_only': True,
+                                               'forward_prefetch': False,
+                                               'fsdp_size': -1,
+                                               'full_determinism': False,
+                                               'model_dtype': 'fp32',
+                                               'offload_policy': False,
+                                               'optimizer_offload': False,
+                                               'param_offload': False,
+                                               'qat': {'_target_': 'verl.workers.config.QATEngineConfig',
+                                                       'activation_observer': 'static_minmax',
+                                                       'enable': False,
+                                                       'group_size': 16,
+                                                       'ignore_patterns': ['lm_head',
+                                                                           'embed_tokens',
+                                                                           're:.*mlp.gate$'],
+                                                       'mode': 'w4a16',
+                                                       'quantization_config_path': None},
+                                               'reshard_after_forward': True,
+                                               'seed': 42,
+                                               'strategy': 'fsdp',
+                                               'ulysses_sequence_parallel_size': 1,
+                                               'use_orig_params': False,
+                                               'use_torch_compile': True,
+                                               'wrap_policy': {'min_num_params': 0}},
+                               'log_prob_max_token_len_per_gpu': 4096,
+                               'log_prob_micro_batch_size': None,
+                               'log_prob_micro_batch_size_per_gpu': None,
+                               'log_prob_use_dynamic_bsz': True,
+                               'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig',
+                                            'all_ranks': False,
+                                            'enable': False,
+                                            'ranks': [],
+                                            'save_path': 'outputs/profile',
+                                            'tool': None,
+                                            'tool_config': {'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig',
+                                                                    'analysis': True,
+                                                                    'contents': [],
+                                                                    'discrete': False,
+                                                                    'level': 'level0'},
+                                                            'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig',
+                                                                     'discrete': False},
+                                                            'precision_debugger': {'_target_': 'verl.utils.profiler.config.PrecisionDebuggerToolConfig',
+                                                                                   'config_path': None,
+                                                                                   'stages': None,
+                                                                                   'steps': None,
+                                                                                   'strict': False},
+                                                            'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig',
+                                                                      'contents': [],
+                                                                      'discrete': False,
+                                                                      'schedule': {'_target_': 'verl.utils.profiler.config.TorchProfilerScheduleConfig',
+                                                                                   'active': 0,
+                                                                                   'repeat': 0,
+                                                                                   'skip_first': 0,
+                                                                                   'wait': 0,
+                                                                                   'warmup': 0}},
+                                                            'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig',
+                                                                             'stack_depth': 32,
+                                                                             'trace_alloc_max_entries': 100000}}},
+                               'rollout_n': 1,
+                               'router_replay': {'_target_': 'verl.workers.config.RouterReplayConfig',
+                                                 'mode': 'disabled',
+                                                 'record_file': None,
+                                                 'replay_file': None},
+                               'strategy': 'fsdp2',
+                               'ulysses_sequence_parallel_size': 1,
+                               'use_torch_compile': False},
+                       'rollout': {'_target_': 'verl.workers.config.RolloutConfig',
+                                   'agent': {'_target_': 'verl.workers.config.AgentLoopConfig',
+                                             'agent_loop_config_path': None,
+                                             'custom_async_server': {'_target_': 'verl.workers.config.CustomAsyncServerConfig',
+                                                                     'name': None,
+                                                                     'path': None},
+                                             'default_agent_loop': 'single_turn_agent',
+                                             'num_workers': 8},
+                                   'calculate_log_probs': True,
+                                   'checkpoint_engine': {'_target_': 'verl.workers.config.CheckpointEngineConfig',
+                                                         'backend': 'nccl',
+                                                         'custom_backend_module': None,
+                                                         'engine_kwargs': {},
+                                                         'update_weights_bucket_megabytes': 1536},
+                                   'cudagraph_capture_sizes': None,
+                                   'data_parallel_size': 1,
+                                   'disable_log_stats': True,
+                                   'disaggregation': {'bootstrap_port': None,
+                                                      'decode_replicas': 1,
+                                                      'decode_tensor_model_parallel_size': None,
+                                                      'enabled': False,
+                                                      'ib_device': None,
+                                                      'prefill_replicas': 1,
+                                                      'transfer_backend': 'nixl'},
+                                   'do_sample': True,
+                                   'dtype': 'bfloat16',
+                                   'enable_chunked_prefill': True,
+                                   'enable_prefix_caching': True,
+                                   'enable_rollout_routing_replay': False,
+                                   'enforce_eager': False,
+                                   'engine_kwargs': {'sglang': {},
+                                                     'trtllm': {},
+                                                     'vllm': {}},
+                                   'expert_parallel_size': 1,
+                                   'free_cache_engine': True,
+                                   'full_determinism': False,
+                                   'gpu_memory_utilization': 0.7,
+                                   'ignore_eos': False,
+                                   'layered_summon': False,
+                                   'load_format': 'dummy',
+                                   'log_prob_max_token_len_per_gpu': 4096,
+                                   'log_prob_micro_batch_size': None,
+                                   'log_prob_micro_batch_size_per_gpu': None,
+                                   'log_prob_use_dynamic_bsz': True,
+                                   'logprobs_mode': 'processed_logprobs',
+                                   'max_model_len': 2048,
+                                   'max_num_batched_tokens': 4096,
+                                   'max_num_seqs': 64,
+                                   'mode': 'async',
+                                   'moe_load_balance_metrics_interval': 0,
+                                   'mtp': {'_target_': 'verl.workers.config.MtpConfig',
+                                           'detach_encoder': False,
+                                           'enable': False,
+                                           'enable_rollout': False,
+                                           'enable_train': False,
+                                           'method': 'mtp',
+                                           'mtp_loss_scaling_factor': 0.1,
+                                           'num_speculative_tokens': 1,
+                                           'speculative_algorithm': 'EAGLE',
+                                           'speculative_eagle_topk': 1,
+                                           'speculative_num_draft_tokens': 4,
+                                           'speculative_num_steps': 3},
+                                   'multi_stage_wake_up': False,
+                                   'multi_turn': {'_target_': 'verl.workers.config.MultiTurnConfig',
+                                                  'enable': False,
+                                                  'format': 'hermes',
+                                                  'function_tool_path': None,
+                                                  'max_assistant_turns': None,
+                                                  'max_parallel_calls': 1,
+                                                  'max_tool_response_length': 256,
+                                                  'max_user_turns': None,
+                                                  'num_repeat_rollouts': None,
+                                                  'tokenization_sanity_check_mode': 'strict',
+                                                  'tool_config_path': None,
+                                                  'tool_response_truncate_side': 'middle',
+                                                  'use_inference_chat_template': False},
+                                   'n': 1,
+                                   'n_gpus_per_node': 1,
+                                   'name': 'vllm',
+                                   'nnodes': 1,
+                                   'over_sample_rate': 0,
+                                   'pipeline_model_parallel_size': 1,
+                                   'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig',
+                                                'all_ranks': False,
+                                                'enable': False,
+                                                'ranks': [],
+                                                'save_path': 'outputs/profile',
+                                                'tool': None,
+                                                'tool_config': {'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig',
+                                                                        'analysis': True,
+                                                                        'contents': [],
+                                                                        'discrete': False,
+                                                                        'level': 'level0',
+                                                                        'profile_token_end': None,
+                                                                        'profile_token_start': None},
+                                                                'precision_debugger': {'_target_': 'verl.utils.profiler.config.PrecisionDebuggerToolConfig',
+                                                                                       'config_path': None,
+                                                                                       'stages': None,
+                                                                                       'steps': None,
+                                                                                       'strict': False},
+                                                                'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig',
+                                                                          'contents': [],
+                                                                          'discrete': False,
+                                                                          'profile_token_end': None,
+                                                                          'profile_token_start': None}}},
+                                   'prometheus': {'_target_': 'verl.workers.config.PrometheusConfig',
+                                                  'enable': False,
+                                                  'file': '/tmp/ray/session_latest/metrics/prometheus/prometheus.yml',
+                                                  'port': 9090,
+                                                  'served_model_name': '/mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_verl_full125_noeval_final_npu23/merged_hf_v125_for_eval'},
+                                   'prompt_length': 1024,
+                                   'qat': {'_target_': 'verl.workers.config.QATEngineConfig',
+                                           'activation_observer': 'static_minmax',
+                                           'enable': False,
+                                           'group_size': 16,
+                                           'ignore_patterns': ['lm_head',
+                                                               'embed_tokens',
+                                                               're:.*mlp.gate$'],
+                                           'mode': 'w4a16',
+                                           'quantization_config_path': None},
+                                   'quantization': None,
+                                   'quantization_config_file': None,
+                                   'response_length': 1024,
+                                   'scheduling_policy': 'fcfs',
+                                   'seed': 1,
+                                   'skip_tokenizer_init': True,
+                                   'temperature': 0.6,
+                                   'tensor_model_parallel_size': 1,
+                                   'top_k': -1,
+                                   'top_p': 1.0,
+                                   'trace': {'_target_': 'verl.workers.config.TraceConfig',
+                                             'backend': None,
+                                             'experiment_name': 'async-single-lora-gsm8k-accuracy',
+                                             'max_samples_per_step_per_worker': None,
+                                             'project_name': 'twinkle-aligned-gsm8k-grpo',
+                                             'token2text': False},
+                                   'val_kwargs': {'_target_': 'verl.workers.config.SamplingConfig',
+                                                  'do_sample': True,
+                                                  'n': 1,
+                                                  'temperature': 0.6,
+                                                  'top_k': -1,
+                                                  'top_p': 1.0}}},
+ 'algorithm': {'_target_': 'verl.trainer.config.AlgoConfig',
+               'adv_estimator': 'grpo',
+               'filter_groups': {'_target_': 'verl.trainer.config.FilterGroupsConfig',
+                                 'enable': False,
+                                 'max_inflight_gen_batches': 1,
+                                 'max_num_gen_batches': 0,
+                                 'metric': None},
+               'gamma': 1.0,
+               'kl_ctrl': {'_target_': 'verl.trainer.config.KLControlConfig',
+                           'horizon': 10000,
+                           'kl_coef': 0.001,
+                           'target_kl': 0.1,
+                           'type': 'fixed'},
+               'kl_penalty': 'kl',
+               'lam': 1.0,
+               'norm_adv_by_std_in_grpo': True,
+               'pf_ppo': {'reweight_method': 'pow', 'weight_pow': 2.0},
+               'rollout_correction': {'bypass_mode': False,
+                                      'loss_type': 'ppo_clip',
+                                      'rollout_is': None,
+                                      'rollout_is_batch_normalize': False,
+                                      'rollout_is_threshold': 2.0,
+                                      'rollout_rs': None,
+                                      'rollout_rs_threshold': None},
+               'use_kl_in_reward': False,
+               'use_pf_ppo': False},
+ 'critic': {'_target_': 'verl.workers.config.FSDPCriticConfig',
+            'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig',
+                           'async_save': False,
+                           'load_contents': ['model', 'optimizer', 'extra'],
+                           'save_contents': ['model', 'optimizer', 'extra']},
+            'cliprange_value': 0.5,
+            'data_loader_seed': 42,
+            'enable': None,
+            'forward_max_token_len_per_gpu': 32768,
+            'forward_micro_batch_size': None,
+            'forward_micro_batch_size_per_gpu': None,
+            'fsdp': {'_target_': 'verl.workers.config.FSDPEngineConfig',
+                     'dtype': 'bfloat16',
+                     'entropy_checkpointing': False,
+                     'entropy_from_logits_chunk_size': 2048,
+                     'entropy_from_logits_with_chunking': False,
+                     'forward_only': False,
+                     'forward_prefetch': False,
+                     'fsdp_size': -1,
+                     'full_determinism': False,
+                     'model_dtype': 'fp32',
+                     'offload_policy': False,
+                     'optimizer_offload': False,
+                     'param_offload': False,
+                     'qat': {'_target_': 'verl.workers.config.QATEngineConfig',
+                             'activation_observer': 'static_minmax',
+                             'enable': False,
+                             'group_size': 16,
+                             'ignore_patterns': ['lm_head',
+                                                 'embed_tokens',
+                                                 're:.*mlp.gate$'],
+                             'mode': 'w4a16',
+                             'quantization_config_path': None},
+                     'reshard_after_forward': True,
+                     'seed': 42,
+                     'strategy': 'fsdp',
+                     'ulysses_sequence_parallel_size': 1,
+                     'use_orig_params': False,
+                     'use_torch_compile': True,
+                     'wrap_policy': {'min_num_params': 0}},
+            'grad_clip': 1.0,
+            'loss_agg_mode': 'token-mean',
+            'loss_scale_factor': None,
+            'model': {'_target_': 'verl.workers.config.HFModelConfig',
+                      'custom_chat_template': None,
+                      'enable_activation_offload': False,
+                      'enable_gradient_checkpointing': True,
+                      'exclude_modules': None,
+                      'external_lib': None,
+                      'fused_kernel_options': {'impl_backend': 'torch'},
+                      'hf_config_path': None,
+                      'lora': {'a2a_experimental': False,
+                               'adapter_path': None,
+                               'alpha': 32,
+                               'dropout': 0.0,
+                               'dropout_position': 'pre',
+                               'dtype': None,
+                               'exclude_modules': [],
+                               'freeze_language_model': True,
+                               'freeze_vision_model': True,
+                               'freeze_vision_projection': True,
+                               'lora_A_init_method': 'xavier',
+                               'lora_B_init_method': 'zero',
+                               'merge': False,
+                               'rank': 0,
+                               'target_modules': ['linear_qkv',
+                                                  'linear_proj',
+                                                  'linear_fc1',
+                                                  'linear_fc2'],
+                               'type': 'lora'},
+                      'lora_adapter_path': None,
+                      'lora_alpha': 16,
+                      'lora_rank': 0,
+                      'mtp': {'_target_': 'verl.workers.config.MtpConfig',
+                              'detach_encoder': False,
+                              'enable': False,
+                              'enable_rollout': False,
+                              'enable_train': False,
+                              'method': 'mtp',
+                              'mtp_loss_scaling_factor': 0.1,
+                              'num_speculative_tokens': 1,
+                              'speculative_algorithm': 'EAGLE',
+                              'speculative_eagle_topk': 1,
+                              'speculative_num_draft_tokens': 4,
+                              'speculative_num_steps': 3},
+                      'override_config': {},
+                      'path': '~/models/deepseek-llm-7b-chat',
+                      'target_modules': 'all-linear',
+                      'tiled_mlp': {'enabled': False, 'num_shards': 4},
+                      'tokenizer_path': None,
+                      'trust_remote_code': False,
+                      'use_fused_kernels': False,
+                      'use_liger': False,
+                      'use_remove_padding': True,
+                      'use_shm': False},
+            'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig',
+                      'betas': [0.9, 0.999],
+                      'clip_grad': 1.0,
+                      'lr': 1e-05,
+                      'lr_scheduler_type': 'constant',
+                      'lr_warmup_steps': -1,
+                      'lr_warmup_steps_ratio': 0.0,
+                      'min_lr_ratio': 0.0,
+                      'num_cycles': 0.5,
+                      'optimizer': 'AdamW',
+                      'optimizer_impl': 'torch.optim',
+                      'override_optimizer_config': None,
+                      'total_training_steps': -1,
+                      'warmup_style': None,
+                      'weight_decay': 0.01,
+                      'zero_indexed_step': True},
+            'ppo_epochs': 1,
+            'ppo_max_token_len_per_gpu': 32768,
+            'ppo_micro_batch_size': None,
+            'ppo_micro_batch_size_per_gpu': None,
+            'ppo_mini_batch_size': 16,
+            'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig',
+                         'all_ranks': False,
+                         'enable': False,
+                         'ranks': [],
+                         'save_path': 'outputs/profile',
+                         'tool': None,
+                         'tool_config': {'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig',
+                                                 'analysis': True,
+                                                 'contents': [],
+                                                 'discrete': False,
+                                                 'level': 'level0'},
+                                         'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig',
+                                                  'discrete': False},
+                                         'precision_debugger': {'_target_': 'verl.utils.profiler.config.PrecisionDebuggerToolConfig',
+                                                                'config_path': None,
+                                                                'stages': None,
+                                                                'steps': None,
+                                                                'strict': False},
+                                         'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig',
+                                                   'contents': [],
+                                                   'discrete': False,
+                                                   'schedule': {'_target_': 'verl.utils.profiler.config.TorchProfilerScheduleConfig',
+                                                                'active': 0,
+                                                                'repeat': 0,
+                                                                'skip_first': 0,
+                                                                'wait': 0,
+                                                                'warmup': 0}},
+                                         'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig',
+                                                          'stack_depth': 32,
+                                                          'trace_alloc_max_entries': 100000}}},
+            'rollout_n': 1,
+            'shuffle': False,
+            'strategy': 'fsdp',
+            'ulysses_sequence_parallel_size': 1,
+            'use_dynamic_bsz': True},
+ 'custom_reward_function': {'name': None, 'path': None},
+ 'data': {'apply_chat_template_kwargs': {'enable_thinking': True},
+          'audio_key': 'audios',
+          'continuous_token': {'enable': False, 'model_family': 'auto'},
+          'custom_cls': {'name': None, 'path': None},
+          'dataloader_num_workers': 8,
+          'filter_overlong_prompts': True,
+          'filter_overlong_prompts_workers': 4,
+          'function_tool_path': None,
+          'gen_batch_size': None,
+          'image_key': 'images',
+          'image_patch_size': 14,
+          'max_prompt_length': 1024,
+          'max_response_length': 1024,
+          'mm_processor_kwargs': {},
+          'output_path': '/mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_verl_v125_merged_manual_eval_official1319_npu3/generated.parquet',
+          'prompt_key': 'prompt',
+          'return_full_prompt': False,
+          'return_multi_modal_inputs': True,
+          'return_raw_chat': True,
+          'return_raw_input_ids': False,
+          'reward_fn_key': 'data_source',
+          'seed': 1,
+          'shuffle': False,
+          'tokenizer': None,
+          'tool_config_path': None,
+          'train_batch_size': 16,
+          'train_files': '/mnt/lv_model/npu60005420a/data/gsm8k_owner_aligned_20260729/verl_test_official_twinkle_aligned.parquet',
+          'train_max_samples': -1,
+          'truncation': 'error',
+          'trust_remote_code': False,
+          'use_shm': False,
+          'val_batch_size': 16,
+          'val_files': '/mnt/lv_model/npu60005420a/data/gsm8k_owner_aligned_20260729/verl_test_official_twinkle_aligned.parquet',
+          'val_max_samples': -1,
+          'validation_shuffle': False,
+          'video_key': 'videos'},
+ 'distillation': {'_target_': 'verl.workers.config.DistillationConfig',
+                  'distillation_loss': {'_target_': 'verl.workers.config.DistillationLossConfig',
+                                        'clip_ratio': 0.2,
+                                        'clip_ratio_high': 0.2,
+                                        'clip_ratio_low': 0.2,
+                                        'distillation_loss_coef': 1.0,
+                                        'log_prob_min_clamp': None,
+                                        'loss_max_clamp': None,
+                                        'loss_mode': 'k3',
+                                        'policy_loss_mode': 'vanilla',
+                                        'topk': 32,
+                                        'use_policy_gradient': False,
+                                        'use_task_rewards': True},
+                  'enabled': False,
+                  'n_gpus_per_node': 8,
+                  'nnodes': 0,
+                  'teacher_key': 'data_source',
+                  'teacher_models': {'teacher_model': {'_target_': 'verl.workers.config.DistillationTeacherModelConfig',
+                                                       'inference': {'_target_': 'verl.workers.config.RolloutConfig',
+                                                                     'cudagraph_capture_sizes': None,
+                                                                     'data_parallel_size': 1,
+                                                                     'disable_log_stats': True,
+                                                                     'dtype': 'bfloat16',
+                                                                     'enable_chunked_prefill': True,
+                                                                     'enable_prefix_caching': True,
+                                                                     'enforce_eager': True,
+                                                                     'engine_kwargs': {},
+                                                                     'expert_parallel_size': 1,
+                                                                     'free_cache_engine': True,
+                                                                     'gpu_memory_utilization': 0.5,
+                                                                     'limit_images': None,
+                                                                     'load_format': 'auto',
+                                                                     'max_model_len': None,
+                                                                     'max_num_batched_tokens': 8192,
+                                                                     'max_num_seqs': 1024,
+                                                                     'name': 'vllm',
+                                                                     'prompt_length': 1024,
+                                                                     'response_length': 1024,
+                                                                     'skip_tokenizer_init': True,
+                                                                     'temperature': 0.6,
+                                                                     'tensor_model_parallel_size': 2},
+                                                       'key': None,
+                                                       'model_path': None,
+                                                       'num_replicas': 0}}},
+ 'global_profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig',
+                     'global_tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig',
+                                                     'controller_nsight_options': {'cuda-graph-trace': 'graph',
+                                                                                   'cuda-memory-usage': 'true',
+                                                                                   'trace': 'cuda,nvtx,cublas,ucx'},
+                                                     'discrete': False,
+                                                     'worker_nsight_options': {'capture-range': 'cudaProfilerApi',
+                                                                               'capture-range-end': None,
+                                                                               'cuda-graph-trace': 'graph',
+                                                                               'cuda-memory-usage': 'true',
+                                                                               'kill': 'none',
+                                                                               'trace': 'cuda,nvtx,cublas,ucx'}},
+                                            'precision_debugger': {'_target_': 'verl.utils.profiler.config.PrecisionDebuggerToolConfig',
+                                                                   'config_path': None,
+                                                                   'stages': None,
+                                                                   'steps': None,
+                                                                   'strict': False},
+                                            'torch_memory': {'context': 'all',
+                                                             'kw_args': {},
+                                                             'stack_depth': 32,
+                                                             'stacks': 'all',
+                                                             'trace_alloc_max_entries': 100000}},
+                     'profile_continuous_steps': False,
+                     'save_path': 'outputs/profile',
+                     'steps': None,
+                     'tool': None},
+ 'model_engine': 'dp',
+ 'ray_kwargs': {'ray_init': {'num_cpus': None}, 'timeline_json_file': None},
+ 'reward': {'_target_': 'verl.workers.config.RewardConfig',
+            'custom_reward_function': {'name': 'compute_score',
+                                       'path': '/mnt/lv_model/npu60005420a/packages/twinkle_aligned_verl_grpo_npu_2cards_owner_20260729/gsm8k_accuracy_reward.py'},
+            'num_workers': 4,
+            'reward_manager': {'_target_': 'verl.workers.config.reward.RewardManagerConfig',
+                               'module': {'_target_': 'verl.trainer.config.config.ModuleConfig',
+                                          'name': 'custom_reward_manager',
+                                          'path': None},
+                               'name': 'naive',
+                               'source': 'register'},
+            'reward_model': {'_target_': 'verl.workers.config.RewardModelConfig',
+                             'enable': False,
+                             'enable_resource_pool': False,
+                             'model_path': None,
+                             'n_gpus_per_node': 8,
+                             'nnodes': 0,
+                             'rollout': {'_target_': 'verl.workers.config.RolloutConfig',
+                                         'cudagraph_capture_sizes': None,
+                                         'data_parallel_size': 1,
+                                         'disable_log_stats': True,
+                                         'disaggregation': {'bootstrap_port': None,
+                                                            'decode_replicas': 1,
+                                                            'decode_tensor_model_parallel_size': None,
+                                                            'enabled': False,
+                                                            'ib_device': None,
+                                                            'prefill_replicas': 1,
+                                                            'transfer_backend': 'nixl'},
+                                         'do_sample': True,
+                                         'dtype': 'bfloat16',
+                                         'enable_chunked_prefill': True,
+                                         'enable_prefix_caching': True,
+                                         'enforce_eager': True,
+                                         'engine_kwargs': {},
+                                         'expert_parallel_size': 1,
+                                         'free_cache_engine': True,
+                                         'full_determinism': False,
+                                         'gpu_memory_utilization': 0.5,
+                                         'ignore_eos': False,
+                                         'layered_summon': False,
+                                         'limit_images': None,
+                                         'load_format': 'auto',
+                                         'max_model_len': None,
+                                         'max_num_batched_tokens': 8192,
+                                         'max_num_seqs': 1024,
+                                         'mtp': None,
+                                         'multi_stage_wake_up': False,
+                                         'n': 1,
+                                         'name': '???',
+                                         'pipeline_model_parallel_size': 1,
+                                         'prompt_length': 2048,
+                                         'quantization': None,
+                                         'quantization_config_file': None,
+                                         'response_length': 2048,
+                                         'scheduling_policy': 'fcfs',
+                                         'seed': 42,
+                                         'skip_tokenizer_init': False,
+                                         'temperature': 1.0,
+                                         'tensor_model_parallel_size': 2,
+                                         'top_k': -1,
+                                         'top_p': 1}},
+            'sandbox_fusion': {'_target_': 'verl.workers.config.SandboxFusionConfig',
+                               'max_concurrent': 64,
+                               'memory_limit_mb': 1024,
+                               'url': None}},
+ 'reward_model': {'enable': None,
+                  'enable_resource_pool': None,
+                  'model': {'external_lib': None,
+                            'path': None,
+                            'trust_remote_code': None},
+                  'n_gpus_per_node': None,
+                  'nnodes': None,
+                  'num_workers': None,
+                  'reward_loop_class_name': None,
+                  'reward_loop_module_path': None,
+                  'reward_loop_source': None,
+                  'reward_manager': None,
+                  'rollout': {'cudagraph_capture_sizes': None,
+                              'data_parallel_size': None,
+                              'disable_log_stats': None,
+                              'dtype': None,
+                              'enable_chunked_prefill': None,
+                              'enable_prefix_caching': None,
+                              'enforce_eager': None,
+                              'engine_kwargs': None,
+                              'expert_parallel_size': None,
+                              'free_cache_engine': None,
+                              'gpu_memory_utilization': None,
+                              'limit_images': None,
+                              'load_format': None,
+                              'max_model_len': None,
+                              'max_num_batched_tokens': None,
+                              'max_num_seqs': None,
+                              'name': None,
+                              'prompt_length': None,
+                              'response_length': None,
+                              'skip_tokenizer_init': None,
+                              'tensor_model_parallel_size': None}},
+ 'sandbox_fusion': {'max_concurrent': None,
+                    'memory_limit_mb': None,
+                    'url': None},
+ 'skip': {'_target_': 'verl.utils.skip.SkipManagerConfig',
+          'async_rollout': {'action': 'cache',
+                            'dump_dir': '~/.verl/rollout_dump',
+                            'enable': False,
+                            'steps': []},
+          'rollout': {'action': 'cache',
+                      'dump_dir': '~/.verl/rollout_dump',
+                      'enable': False,
+                      'steps': []},
+          'rollout_tq': {'action': 'cache',
+                         'dump_dir': '~/.verl/rollout_dump',
+                         'enable': False,
+                         'steps': []}},
+ 'trainer': {'balance_batch': True,
+             'critic_warmup': 0,
+             'default_hdfs_dir': None,
+             'default_local_dir': '/mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_verl_v125_merged_manual_eval_official1319_npu3/checkpoints_unused',
+             'del_local_ckpt_after_load': False,
+             'device': 'npu',
+             'esi_redundant_time': 0,
+             'experiment_name': 'async-single-lora-gsm8k-accuracy',
+             'log_val_generations': 0,
+             'logger': ['console', 'tensorboard'],
+             'max_actor_ckpt_to_keep': None,
+             'max_critic_ckpt_to_keep': None,
+             'n_gpus_per_node': 1,
+             'nnodes': 1,
+             'project_name': 'twinkle-aligned-gsm8k-grpo',
+             'ray_wait_register_center_timeout': 300,
+             'resume_from_path': None,
+             'resume_mode': 'disable',
+             'rollout_data_dir': '/mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_verl_v125_merged_manual_eval_official1319_npu3/rollouts',
+             'save_freq': 125,
+             'test_freq': -1,
+             'total_epochs': 1,
+             'total_training_steps': 125,
+             'use_v1': True,
+             'v1': {'colocate_async': {'num_warmup_batches': 1},
+                    'sampler': {'custom_sampler': {'name': None, 'path': None},
+                                'max_off_policy_strategy': 'wait',
+                                'max_off_policy_threshold': 1,
+                                'sampler_kwargs': {},
+                                'sync_refill_failed_groups': False},
+                    'separate_async': {'num_warmup_batches': 0,
+                                       'parameter_sync_step': 1},
+                    'sync': {},
+                    'trainer_mode': 'separate_async'},
+             'val_before_train': False,
+             'val_only': False,
+             'validation_data_dir': '/mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_verl_v125_merged_manual_eval_official1319_npu3/validation_data'},
+ 'transfer_queue': {'backend': {'MooncakeStore': {'auto_init': False,
+                                                  'device_name': '',
+                                                  'global_segment_size': 4294967296,
+                                                  'local_buffer_size': 1073741824,
+                                                  'local_hostname': 'localhost',
+                                                  'master_server_address': 'localhost:50124',
+                                                  'metadata_server': 'localhost:50123',
+                                                  'protocol': 'tcp'},
+                                'SimpleStorage': {'num_data_storage_units': 2,
+                                                  'total_storage_size': 10000},
+                                'storage_backend': 'SimpleStorage'},
+                    'enable': True,
+                    'metrics': {'enabled': True, 'port': 0}}}
+[2026-07-30 19:19:06,792][torch_npu.env][INFO] - get env LD_LIBRARY_PATH = /usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/lib:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/examples:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/tests/atbopstest:/usr/local/Ascend/cann-9.0.0/lib64:/usr/local/Ascend/cann-9.0.0/lib64/plugin/opskernel:/usr/local/Ascend/cann-9.0.0/lib64/plugin/nnengine:/usr/local/Ascend/cann-9.0.0/opp/built-in/op_impl/ai_core/tbe/op_tiling/lib/linux/aarch64:/usr/local/Ascend/driver/lib64:/usr/local/Ascend/driver/lib64/common:/usr/local/Ascend/driver/lib64/driver:/usr/local/Ascend/driver/lib64:/usr/local/Ascend/driver/lib64/common:/usr/local/Ascend/driver/lib64/driver:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/lib:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/examples:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/tests/atbopstest:/usr/local/Ascend/ascend-toolkit/latest/tools/aml/lib64:/usr/local/Ascend/ascend-toolkit/latest/tools/aml/lib64/plugin:/usr/local/Ascend/ascend-toolkit/latest/lib64:/usr/local/Ascend/ascend-toolkit/latest/lib64/plugin/opskernel:/usr/local/Ascend/ascend-toolkit/latest/lib64/plugin/nnengine:/usr/local/Ascend/ascend-toolkit/latest/opp/built-in/op_impl/ai_core/tbe/op_tiling:/usr/local/python3.11.15/lib:
+INFO 07-30 19:19:07 [__init__.py:44] Available plugins for group vllm.platform_plugins:
+INFO 07-30 19:19:07 [__init__.py:46] - ascend -> vllm_ascend:register
+INFO 07-30 19:19:07 [__init__.py:49] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+INFO 07-30 19:19:07 [__init__.py:239] Platform plugin ascend is activated
+[2026-07-30 19:19:10,124][torch_npu.env][INFO] - get env TORCHINDUCTOR_CACHE_DIR = /tmp/torchinductor_root
+[36m(pid=713555)[0m INFO 07-30 19:19:32 [__init__.py:44] Available plugins for group vllm.platform_plugins:
+[36m(pid=713555)[0m INFO 07-30 19:19:32 [__init__.py:46] - ascend -> vllm_ascend:register
+[36m(pid=713555)[0m INFO 07-30 19:19:32 [__init__.py:49] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+[36m(pid=713555)[0m INFO 07-30 19:19:32 [__init__.py:239] Platform plugin ascend is activated
+[36m(CheckpointEngineWorker pid=713555)[0m WARNING:2026-07-30 19:19:43,409:IPC is not supported on your devices. Falling back to shared memory for weight transfer, which may cause performance degradation. If you are using Ascend NPUs, please ensure that your software and CANN toolkit versions meet the requirements for IPC support. (Ascend HDK version >= 25.3.rc1 and CANN toolkit version >= 8.3.RC1)
+[36m(CheckpointEngineWorker pid=713555)[0m [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[36m(pid=714632)[0m INFO 07-30 19:20:01 [__init__.py:44] Available plugins for group vllm.platform_plugins:
+[36m(pid=714632)[0m INFO 07-30 19:20:01 [__init__.py:46] - ascend -> vllm_ascend:register
+[36m(pid=714632)[0m INFO 07-30 19:20:01 [__init__.py:49] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+[36m(pid=714632)[0m INFO 07-30 19:20:01 [__init__.py:239] Platform plugin ascend is activated
+[36m(vLLMHttpServer pid=714632)[0m ['serve',
+[36m(vLLMHttpServer pid=714632)[0m  '/mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_verl_full125_noeval_final_npu23/merged_hf_v125_for_eval',
+[36m(vLLMHttpServer pid=714632)[0m  '--dtype',
+[36m(vLLMHttpServer pid=714632)[0m  'bfloat16',
+[36m(vLLMHttpServer pid=714632)[0m  '--load_format',
+[36m(vLLMHttpServer pid=714632)[0m  'auto',
+[36m(vLLMHttpServer pid=714632)[0m  '--distributed_executor_backend',
+[36m(vLLMHttpServer pid=714632)[0m  'mp',
+[36m(vLLMHttpServer pid=714632)[0m  '--worker_extension_cls',
+[36m(vLLMHttpServer pid=714632)[0m  'verl.workers.rollout.vllm_rollout.utils.vLLMColocateWorkerExtension',
+[36m(vLLMHttpServer pid=714632)[0m  '--max_model_len',
+[36m(vLLMHttpServer pid=714632)[0m  '2048',
+[36m(vLLMHttpServer pid=714632)[0m  '--max_num_seqs',
+[36m(vLLMHttpServer pid=714632)[0m  '64',
+[36m(vLLMHttpServer pid=714632)[0m  '--enable_chunked_prefill',
+[36m(vLLMHttpServer pid=714632)[0m  '--max_num_batched_tokens',
+[36m(vLLMHttpServer pid=714632)[0m  '4096',
+[36m(vLLMHttpServer pid=714632)[0m  '--enable_prefix_caching',
+[36m(vLLMHttpServer pid=714632)[0m  '--enable_sleep_mode',
+[36m(vLLMHttpServer pid=714632)[0m  '--logprobs_mode',
+[36m(vLLMHttpServer pid=714632)[0m  'processed_logprobs',
+[36m(vLLMHttpServer pid=714632)[0m  '--gpu_memory_utilization',
+[36m(vLLMHttpServer pid=714632)[0m  '0.7',
+[36m(vLLMHttpServer pid=714632)[0m  '--disable_log_stats',
+[36m(vLLMHttpServer pid=714632)[0m  '--tensor_parallel_size',
+[36m(vLLMHttpServer pid=714632)[0m  '1',
+[36m(vLLMHttpServer pid=714632)[0m  '--seed',
+[36m(vLLMHttpServer pid=714632)[0m  '1',
+[36m(vLLMHttpServer pid=714632)[0m  '--override_generation_config',
+[36m(vLLMHttpServer pid=714632)[0m  '{"temperature": 0.6, "top_k": -1, "top_p": 1.0, "repetition_penalty": 1.0, '
+[36m(vLLMHttpServer pid=714632)[0m  '"max_new_tokens": 1024}',
+[36m(vLLMHttpServer pid=714632)[0m  '--hf_overrides',
+[36m(vLLMHttpServer pid=714632)[0m  '{}',
+[36m(vLLMHttpServer pid=714632)[0m  '--scheduling_policy',
+[36m(vLLMHttpServer pid=714632)[0m  'fcfs',
+[36m(vLLMHttpServer pid=714632)[0m  '--compilation_config',
+[36m(vLLMHttpServer pid=714632)[0m  '{"cudagraph_mode": "FULL_AND_PIECEWISE"}',
+[36m(vLLMHttpServer pid=714632)[0m  '--mm_processor_cache_gb',
+[36m(vLLMHttpServer pid=714632)[0m  '0']
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:12 [__init__.py:110] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:12 [__init__.py:110] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+[36m(vLLMHttpServer pid=714632)[0m WARNING 07-30 19:20:12 [envs.py:1717] Unknown vLLM environment variable detected: VLLM_ASCEND_AUTO_DETECT_QUANTIZATION
+[36m(vLLMHttpServer pid=714632)[0m WARNING 07-30 19:20:12 [envs.py:1717] Unknown vLLM environment variable detected: VLLM_USE_V1
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:12 [model.py:533] Resolved architecture: Qwen3ForCausalLM
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:12 [model.py:1582] Using max model len 2048
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:12 [arg_utils.py:1569] Using ray runtime env (env vars redacted): {'env_vars': {'NCCL_CUMEM_ENABLE': '***', 'NCCL_DEBUG': '***', 'RAY_EXPERIMENTAL_NOSET_ASCEND_RT_VISIBLE_DEVICES': '***', 'TOKENIZERS_PARALLELISM': '***', 'VLLM_ASCEND_AUTO_DETECT_QUANTIZATION': '***', 'VLLM_USE_V1': '***'}}
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:12 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=4096.
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:12 [vllm.py:754] Asynchronous scheduling is enabled.
+[36m(vLLMHttpServer pid=714632)[0m WARNING 07-30 19:20:12 [platform.py:783] Parameter '--disable-cascade-attn' is a GPU-specific feature. Resetting to False for Ascend.
+[36m(vLLMHttpServer pid=714632)[0m WARNING 07-30 19:20:12 [platform.py:872] Ignored parameter 'disable_flashinfer_prefill'. This is a GPU-specific feature not supported on Ascend. Resetting to False.
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:12 [ascend_config.py:426] Dynamic EPLB is False
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:12 [ascend_config.py:427] The number of redundant experts is 0
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:12 [platform.py:370] PIECEWISE compilation enabled on NPU. use_inductor not supported - using only ACL Graph mode
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:12 [utils.py:549] Calculated maximum supported batch sizes for ACL graph: 48
+[36m(vLLMHttpServer pid=714632)[0m WARNING 07-30 19:20:12 [utils.py:550] Currently, communication is performed using FFTS+ method, which reduces the number of available streams and, as a result, limits the range of runtime shapes that can be handled. To both improve communication performance and increase the number of supported shapes, set HCCL_OP_EXPANSION_MODE=AIV.
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:12 [utils.py:582] No adjustment needed for ACL graph batch sizes: Qwen3ForCausalLM model (layers: 36) with 11 sizes
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:12 [utils.py:1188] Block size is set to 128 if prefix cache or chunked prefill is enabled.
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:12 [compilation.py:289] Enabled custom fusions: norm_quant, act_quant
+[36m(vLLMHttpServer pid=714632)[0m WARNING 07-30 19:20:17 [system_utils.py:152] We must use the `spawn` multiprocessing start method. Overriding VLLM_WORKER_MULTIPROC_METHOD to 'spawn'. See https://docs.vllm.ai/en/latest/usage/troubleshooting.html#python-multiprocessing for more information. Reasons: In a Ray actor and can only be spawned
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:31 [__init__.py:44] Available plugins for group vllm.platform_plugins:
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:31 [__init__.py:46] - ascend -> vllm_ascend:register
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:31 [__init__.py:49] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:31 [__init__.py:239] Platform plugin ascend is activated
+[36m(vLLMHttpServer pid=714632)[0m (EngineCore pid=715505) INFO 07-30 19:20:37 [__init__.py:110] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+[36m(vLLMHttpServer pid=714632)[0m (EngineCore pid=715505) INFO 07-30 19:20:37 [__init__.py:110] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+[36m(vLLMHttpServer pid=714632)[0m (EngineCore pid=715505) INFO 07-30 19:20:37 [core.py:103] Initializing a V1 LLM engine (v0.18.0) with config: model='/mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_verl_full125_noeval_final_npu23/merged_hf_v125_for_eval', speculative_config=None, tokenizer='/mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_verl_full125_noeval_final_npu23/merged_hf_v125_for_eval', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=True, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=npu, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=1, served_model_name=/mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_verl_full125_noeval_final_npu23/merged_hf_v125_for_eval, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'vllm_ascend.compilation.compiler_interface.AscendCompiler', 'custom_ops': ['all'], 'splitting_ops': ['vllm::unified_attention', 'vllm::unified_attention_with_output', 'vllm::unified_mla_attention', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::gdn_attention_core', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::kda_attention', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update', 'vllm::mla_forward'], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_endpoints': [4096], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.PIECEWISE: 1>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 64, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:48 [__init__.py:44] Available plugins for group vllm.platform_plugins:
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:48 [__init__.py:46] - ascend -> vllm_ascend:register
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:48 [__init__.py:49] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:48 [__init__.py:239] Platform plugin ascend is activated
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:57 [__init__.py:110] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:20:57 [__init__.py:110] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:21:01 [worker_base.py:269] Injected <class 'verl.workers.rollout.vllm_rollout.utils.vLLMColocateWorkerExtension'> into <class 'vllm_ascend.worker.worker.NPUWorker'> for extended collective_rpc calls ['_apply_buffer_updates_all_models', '_get_draft_model_config', '_get_drafter_model', '_get_zmq_handle', '_iter_all_models', '_iter_all_models_with_config', '_update_weights', '_use_mtp_drafter_weight_sync', 'monkey_patch_model', 'update_weights_from_ipc']
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:21:01 [ascend_config.py:426] Dynamic EPLB is False
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:21:01 [ascend_config.py:427] The number of redundant experts is 0
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:03 [parallel_state.py:1395] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://127.0.0.1:51601 backend=hccl
+[36m(vLLMHttpServer pid=714632)[0m [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[36m(vLLMHttpServer pid=714632)[0m [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[36m(vLLMHttpServer pid=714632)[0m [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[36m(vLLMHttpServer pid=714632)[0m [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[36m(vLLMHttpServer pid=714632)[0m [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[36m(vLLMHttpServer pid=714632)[0m [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:03 [parallel_state.py:1717] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+[36m(vLLMHttpServer pid=714632)[0m [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:05 [cpu_binding.py:329] [cpu_bind_mode] mode=topo_affinity rank=0 visible_npus=[3]
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:05 [cpu_binding.py:376] The CPU allocation plan is as follows:
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:05 [cpu_binding.py:381] NPU3: main=[98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141]  acl=[142]  release=[[143]]
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:06 [cpu_binding.py:392] The 'migratepages' command is not available, skipping memory binding.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:06 [cpu_binding.py:497] NPU3(PCI 0000:82:00.0): sq_send_trigger_irq IRQ_ID=2892 -> CPU96, cq_update_irq IRQ_ID=2893 -> CPU97
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:07 [model_runner_v1.py:2589] Starting to load model /mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_verl_full125_noeval_final_npu23/merged_hf_v125_for_eval...
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:08 [compilation.py:942] Using OOT custom backend for compilation.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:08 [compilation.py:942] Using OOT custom backend for compilation.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:02<00:00,  2.51s/it]
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:02<00:00,  2.51s/it]
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) 
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:12 [default_loader.py:384] Loading weights took 3.07 seconds
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:14 [model_runner_v1.py:2616] Loading model weights took 7.5747 GB
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:25 [backends.py:988] Using cache directory: /root/.cache/vllm/torch_compile_cache/3eaa72912d/rank_0_0/backbone for vLLM's torch.compile
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:25 [backends.py:1048] Dynamo bytecode transform time: 10.89 s
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:28 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:28 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:29 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:30 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:30 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:31 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:31 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:32 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:33 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:33 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:34 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:34 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:35 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:36 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:37 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:38 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:38 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:39 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:40 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:40 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:41 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:42 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:42 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:43 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:43 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:44 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:45 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:45 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:46 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:46 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:47 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:48 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:48 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:49 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:49 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:50 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn(
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:51 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:21:51 [backends.py:387] Compiling a graph for compile range (1, 4096) takes 23.12 s
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:22:04 [monitor.py:48] torch.compile and initial profiling/warmup run together took 49.88 s in total
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:22:06 [worker.py:357] Available KV cache memory: 34.65 GiB
+[36m(vLLMHttpServer pid=714632)[0m (EngineCore pid=715505) INFO 07-30 19:22:06 [kv_cache_utils.py:1316] GPU KV cache size: 252,160 tokens
+[36m(vLLMHttpServer pid=714632)[0m (EngineCore pid=715505) INFO 07-30 19:22:06 [kv_cache_utils.py:1321] Maximum concurrency for 2,048 tokens per request: 123.12x
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/11 [00:00<?, ?it/s]
+[36m(vLLMHttpServer pid=714632)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   9%|▉         | 1/11 [00:00<00:03,  2.72it/s]
+[36m(vLLMHttpServer pid=714632)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  18%|█▊        | 2/11 [00:06<00:32,  3.58s/it]
+[36m(vLLMHttpServer pid=714632)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  27%|██▋       | 3/11 [00:06<00:16,  2.12s/it]
+[36m(vLLMHttpServer pid=714632)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  36%|███▋      | 4/11 [00:06<00:09,  1.42s/it]
+[36m(vLLMHttpServer pid=714632)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  45%|████▌     | 5/11 [00:07<00:06,  1.04s/it]
+[36m(vLLMHttpServer pid=714632)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  55%|█████▍    | 6/11 [00:07<00:04,  1.24it/s]
+[36m(vLLMHttpServer pid=714632)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  64%|██████▎   | 7/11 [00:08<00:02,  1.49it/s]
+[36m(vLLMHttpServer pid=714632)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  73%|███████▎  | 8/11 [00:08<00:01,  1.72it/s]
+[36m(vLLMHttpServer pid=714632)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  82%|████████▏ | 9/11 [00:08<00:01,  1.93it/s]
+[36m(vLLMHttpServer pid=714632)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  91%|█████████ | 10/11 [00:09<00:00,  2.11it/s]
+[36m(vLLMHttpServer pid=714632)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 11/11 [00:17<00:00,  2.91s/it]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 11/11 [00:17<00:00,  1.60s/it]
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:22:25 [gpu_model_runner.py:5746] Graph capturing finished in 19 secs, took 0.02 GiB
+[36m(vLLMHttpServer pid=714632)[0m (EngineCore pid=715505) INFO 07-30 19:22:25 [core.py:281] init engine (profile, create kv cache, warmup model) took 71.40 seconds
+[36m(vLLMHttpServer pid=714632)[0m (EngineCore pid=715505) INFO 07-30 19:22:28 [vllm.py:754] Asynchronous scheduling is enabled.
+[36m(vLLMHttpServer pid=714632)[0m (EngineCore pid=715505) INFO 07-30 19:22:28 [ascend_config.py:426] Dynamic EPLB is False
+[36m(vLLMHttpServer pid=714632)[0m (EngineCore pid=715505) INFO 07-30 19:22:28 [ascend_config.py:427] The number of redundant experts is 0
+[36m(vLLMHttpServer pid=714632)[0m (EngineCore pid=715505) INFO 07-30 19:22:28 [platform.py:370] PIECEWISE compilation enabled on NPU. use_inductor not supported - using only ACL Graph mode
+[36m(vLLMHttpServer pid=714632)[0m (EngineCore pid=715505) INFO 07-30 19:22:28 [utils.py:549] Calculated maximum supported batch sizes for ACL graph: 48
+[36m(vLLMHttpServer pid=714632)[0m (EngineCore pid=715505) WARNING 07-30 19:22:28 [utils.py:550] Currently, communication is performed using FFTS+ method, which reduces the number of available streams and, as a result, limits the range of runtime shapes that can be handled. To both improve communication performance and increase the number of supported shapes, set HCCL_OP_EXPANSION_MODE=AIV.
+[36m(vLLMHttpServer pid=714632)[0m (EngineCore pid=715505) INFO 07-30 19:22:28 [utils.py:582] No adjustment needed for ACL graph batch sizes: Qwen3ForCausalLM model (layers: 36) with 11 sizes
+[36m(vLLMHttpServer pid=714632)[0m (EngineCore pid=715505) INFO 07-30 19:22:28 [compilation.py:289] Enabled custom fusions: norm_quant, act_quant
+[36m(vLLMHttpServer pid=714632)[0m WARNING 07-30 19:22:29 [model.py:1376] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'repetition_penalty': 1.0, 'temperature': 0.6, 'top_k': -1, 'top_p': 1.0, 'max_tokens': 1024}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`.
+[36m(vLLMHttpServer pid=714632)[0m INFO 07-30 19:22:32 [hf.py:320] Detected the chat template content format to be 'string'. You can set `--chat-template-content-format` to override this.
+[36m(vLLMHttpServer pid=714632)[0m (Worker pid=715925) INFO 07-30 19:22:36 [acl_graph.py:196] Replaying aclgraph
+Saving results to /mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_verl_v125_merged_manual_eval_official1319_npu3/generated.parquet
+[36m(vLLMHttpServer pid=714632)[0m ERROR 07-30 19:38:31 [core_client.py:704] Engine core proc EngineCore died unexpectedly, shutting down client.
+[36m(vLLMHttpServer pid=714632)[0m sys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+{
+  "eval/count": 1319,
+  "eval/correct": 532,
+  "eval/incorrect": 787,
+  "eval/accuracy": 0.40333586050037906,
+  "model_path": "/mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_verl_full125_noeval_final_npu23/merged_hf_v125_for_eval",
+  "adapter_path": "",
+  "protocol": {
+    "dataset": "official_gsm8k_test_1319",
+    "reward": "owner_gsm8k_accuracy_reward.compute_score",
+    "temperature": 0.6,
+    "top_p": 1.0,
+    "top_k": -1,
+    "n": 1,
+    "max_tokens": 1024,
+    "enable_thinking": true
+  }
+}
+RESULT: VERL_V125_MANUAL_EVAL_SCORING_PASS
+QY_VERL_MANUAL_EVAL_GENERATION_RC=0
+QY_VERL_MANUAL_EVAL_SCORING_RC=0
+QY_VERL_MANUAL_EVAL_ELAPSED_SECONDS=1206
+RESULT: OWNER_VERL_V125_MANUAL_EVAL_PASS

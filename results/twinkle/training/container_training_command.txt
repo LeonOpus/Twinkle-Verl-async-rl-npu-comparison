@@ -1,0 +1,4 @@
+container=qy_twinkle_verl_cmp_20260724
+container_workdir=/mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_twinkle_full125_noeval_final_npu23/run_cwd
+ASCEND_RT_VISIBLE_DEVICES=2,3
+python3 -u /workspace/twinkle_verl_cmp_b079_npu/cookbook/rl/async_multi_lora_grpo.py --config /mnt/lv_model/npu60005420a/qy_runtime_configs/qy_owner_twinkle_full125_noeval_final_npu23.yaml

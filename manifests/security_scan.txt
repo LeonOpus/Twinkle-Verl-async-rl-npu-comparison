@@ -1,0 +1,3 @@
+scanned_files=4338
+skipped_files_over_20MiB=0
+finding_count=0

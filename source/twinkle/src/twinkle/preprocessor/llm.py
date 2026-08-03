@@ -1,0 +1,222 @@
+# Copyright (c) ModelScope Contributors. All rights reserved.
+import re
+from typing import Any, Dict, List
+
+from twinkle.data_format import Message, Trajectory
+from .base import Preprocessor
+
+
+class CompetitionMathProcessor(Preprocessor):
+
+    def __call__(self, rows: Dict[str, List[Any]]) -> Dict[str, List[Any]]:
+        rows = self.map_col_to_row(rows)
+        rows = [self.preprocess(row) for row in rows]
+        rows = self.map_row_to_col(rows)
+        return rows
+
+    def preprocess(self, row) -> Dict[str, Any]:
+        problem = row['problem']
+        solution = row['solution']
+        messages = [
+            Message(role='user', content=problem),
+            Message(role='assistant', content=solution),
+        ]
+        return Trajectory(messages=messages)
+
+
+class CompetitionMathGRPOProcessor(Preprocessor):
+
+    def __call__(self, rows: Dict[str, List[Any]]) -> Dict[str, List[Any]]:
+        rows = self.map_col_to_row(rows)
+        rows = [self.preprocess(row) for row in rows]
+        rows = self.map_row_to_col(rows)
+        return rows
+
+    def preprocess(self, row) -> Trajectory:
+        problem = row['problem']
+        solution = row['solution']
+        messages = [
+            Message(
+                role='system',
+                content='You are a helpful math assistant. Respond with only the final answer in the form '
+                '\\boxed{...} and nothing else.'),
+            Message(role='user', content=problem),
+            Message(role='assistant', content=''),
+        ]
+        return Trajectory(messages=messages, user_data=[('solution', solution)])
+
+
+class SelfCognitionProcessor(Preprocessor):
+
+    def __init__(self, model_name=None, model_author=None):
+        self.model_name = model_name or 'twinkle robot'
+        self.model_author = model_author or 'twinkle lab'
+
+    def __call__(self, rows: Dict[str, List[Any]]) -> Dict[str, List[Any]]:
+        rows = self.map_col_to_row(rows)
+        rows = [self.preprocess(row) for row in rows]
+        rows = self.map_row_to_col(rows)
+        return rows
+
+    def preprocess(self, row) -> Trajectory:
+        problem = row['query'].replace('{{NAME}}', self.model_name).replace('{{AUTHOR}}', self.model_author)
+        solution = row['response'].replace('{{NAME}}', self.model_name).replace('{{AUTHOR}}', self.model_author)
+        messages = [
+            Message(role='system', content='You are a helpful assistant.'),
+            Message(role='user', content=problem),
+            Message(role='assistant', content=solution),
+        ]
+        return Trajectory(messages=messages)
+
+
+class AlpacaProcessor(Preprocessor):
+
+    def __call__(self, rows: Dict[str, List[Any]]) -> Dict[str, List[Any]]:
+        rows = self.map_col_to_row(rows)
+        rows = [self.preprocess(row) for row in rows]
+        rows = self.map_row_to_col(rows)
+        return rows
+
+    def preprocess(self, row) -> Trajectory:
+        instruction = row.get('instruction') or ''
+        input_text = row.get('input') or ''
+        output_text = row.get('output') or ''
+        prompt = instruction if not input_text else f'{instruction}\n{input_text}'
+        messages = [
+            Message(role='user', content=prompt),
+            Message(role='assistant', content=output_text),
+        ]
+        return Trajectory(messages=messages)
+
+
+class CountdownProcessor(Preprocessor):
+    system_prompt = ('You are a helpful assistant. You first thinks about the reasoning process '
+                     'in the mind and then provides the user with the answer.')
+
+    def __call__(self, rows: Dict[str, List[Any]]) -> Dict[str, List[Any]]:
+        rows = self.map_col_to_row(rows)
+        rows = [self.preprocess(row) for row in rows]
+        rows = self.map_row_to_col(rows)
+        return rows
+
+    def preprocess(self, row) -> Trajectory:
+        nums = row.get('nums', [])
+        target = row.get('response', row.get('target', 0))
+
+        query = f"""Using the numbers {nums}, create an equation that equals {target}.
+You can use basic arithmetic operations (+, -, *, /) and each number can only be used once.
+Show your work in <think> </think> tags. And return the final equation and answer in <answer> </answer> tags,
+for example <answer> (1 + 2) / 3 * 4 = 4 </answer>."""
+
+        messages = [
+            Message(role='system', content=self.system_prompt),
+            Message(role='user', content=query),
+        ]
+        return Trajectory(messages=messages, user_data=[{'target': target, 'nums': nums}])
+
+
+class GSM8KProcessor(Preprocessor):
+    """Preprocessor for GSM8K dataset (prompt-only, for on-policy generation).
+
+    GSM8K fields: question (str), answer (str ending with '#### <number>')
+    Extracts the ground truth number and stores it in user_data for reward.
+    Only includes system + user messages; assistant response is generated on-policy.
+    """
+    system_prompt = ('You are a helpful math assistant. Solve the problem step by step '
+                     'and put your final answer within \\boxed{}.')
+
+    def __init__(self, system=None, add_assistant=False):
+        self.system = system
+        if self.system is None:
+            self.system = self.system_prompt
+        self.add_assistant = add_assistant
+
+    def extract_ground_truth(self, answer_str: str) -> str:
+        """Extract the number after '####' from GSM8K answer."""
+        match = re.search(r'####\s*([\-\d,.]+)', answer_str)
+        if match:
+            return match.group(1).replace(',', '').strip()
+        return ''
+
+    def __call__(self, rows: Dict[str, List[Any]]) -> Dict[str, List[Any]]:
+        rows = self.map_col_to_row(rows)
+        rows = [self.preprocess(row) for row in rows]
+        rows = self.map_row_to_col(rows)
+        return rows
+
+    def preprocess(self, row) -> Trajectory:
+        question = row['question']
+        answer = row.get('answer', '')
+        ground_truth = self.extract_ground_truth(answer)
+
+        messages = [
+            Message(role='system', content=self.system),
+            Message(role='user', content=question),
+        ]
+        if self.add_assistant:
+            messages.append(Message(role='assistant', content=answer))
+        return Trajectory(
+            messages=messages,
+            user_data=[('ground_truth', ground_truth)],
+        )
+
+
+class AReaLGSM8KProcessor(GSM8KProcessor):
+    """Match the prompt contract used by AReaL's GSM8K RL dataset."""
+
+    answer_instruction = '\nPlease put your final answer within \\boxed{}.'
+
+    def preprocess(self, row) -> Trajectory:
+        question = str(row['question']) + self.answer_instruction
+        # AReaL passes the complete GSM8K answer to math_verify, not only the
+        # numeric suffix following ``####``.
+        ground_truth = str(row.get('answer', ''))
+        return Trajectory(
+            messages=[Message(role='user', content=question)],
+            user_data=[('ground_truth', ground_truth)],
+        )
+
+
+class DAPOMathProcessor(Preprocessor):
+    """Prepare BytedTsinghua-SIA/DAPO-Math-17k rows for on-policy rollout.
+
+    Required source schema::
+
+        prompt: list[{"role": str, "content": str}]
+        reward_model: {"ground_truth": str, ...}
+    """
+
+    def __call__(self, rows: Dict[str, List[Any]]) -> Dict[str, List[Any]]:
+        rows = self.map_col_to_row(rows)
+        rows = [self.preprocess(row) for row in rows]
+        return self.map_row_to_col(rows)
+
+    def preprocess(self, row) -> Trajectory:
+        messages = [Message(role=message['role'], content=message['content']) for message in row['prompt']]
+        ground_truth = str(row['reward_model']['ground_truth'])
+        return Trajectory(messages=messages, user_data=[('ground_truth', ground_truth)])
+
+
+class AIME2024Processor(Preprocessor):
+    """Prepare Maxwell-Jia/AIME_2024 rows for on-policy rollout.
+
+    Required source schema::
+
+        Problem: str
+        Answer: int | str
+    """
+
+    answer_format = '\nThe answer format must be: \\boxed{The final answer goes here.}'
+
+    def __call__(self, rows: Dict[str, List[Any]]) -> Dict[str, List[Any]]:
+        rows = self.map_col_to_row(rows)
+        rows = [self.preprocess(row) for row in rows]
+        return self.map_row_to_col(rows)
+
+    def preprocess(self, row) -> Trajectory:
+        prompt = str(row['Problem']).strip() + self.answer_format
+        ground_truth = str(row['Answer'])
+        return Trajectory(
+            messages=[Message(role='user', content=prompt)],
+            user_data=[('ground_truth', ground_truth)],
+        )

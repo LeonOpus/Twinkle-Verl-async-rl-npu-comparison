@@ -1,0 +1,27 @@
+--- /mnt/lv_model/npu60005420a/packages/twinkle_aligned_verl_grpo_npu_2cards_owner_20260729/twinkle_async_single_lora_gsm8k_accuracy_npu_2cards.yaml	2026-07-29 12:40:49.000000000 +0000
++++ /mnt/lv_model/npu60005420a/qy_runtime_configs/qy_owner_twinkle_full125_noeval_final_npu23.yaml	2026-07-30 04:24:22.857956263 +0000
+@@ -14,6 +14,7 @@
+   rollout_retry_delay_s: 0.5
+   keep_adapter_versions: 2
+   output_dir: output/async_single_lora_gsm8k_accuracy
++  metrics_path: /mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_twinkle_full125_noeval_final_npu23/metrics.jsonl
+ 
+ metrics:
+   enabled: true
+@@ -67,7 +68,7 @@
+   train: {policy: sticky, max_consecutive_units: null}
+ 
+ evaluation:
+-  enabled: true
++  enabled: false
+   interval: 10
+   batch_size: 16
+   sampling_params:
+@@ -102,6 +103,7 @@
+       processor: GSM8KProcessor
+       system_prompt: 'You are a helpful math assistant. Solve the problem step by step and put your final answer within \boxed{}.'
+     eval_dataset:
++      reward_type: gsm8k_accuracy
+       name: gsm8k/test
+       dataset_id: ${oc.env:GSM8K_TEST_DATASET_ID}
+       subset_name: main

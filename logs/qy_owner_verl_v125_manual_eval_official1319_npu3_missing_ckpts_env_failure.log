@@ -1,0 +1,16 @@
+[2026-07-30 18:23:19,827][torch_npu.env][INFO] - get env RAY_USAGE_STATS_ENABLED = 0
+2026-07-30 18:23:25,983	INFO worker.py:2003 -- Started a local Ray instance. View the dashboard at [1m[32mhttp://127.0.0.1:8265 [39m[22m
+/usr/local/python3.11.15/lib/python3.11/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+Error executing job with overrides: []
+Traceback (most recent call last):
+  File "/workspace/verl_official_main_17ea153d95ee_20260729/verl/trainer/main_generation_server.py", line 126, in main
+    pprint(OmegaConf.to_container(config, resolve=True))  # resolve=True will eval symbol values
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+omegaconf.errors.InterpolationResolutionError: KeyError raised while resolving interpolation: "Environment variable 'CKPTS_DIR' not found"
+    full_key: trainer.default_local_dir
+    object_type=dict
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+QY_VERL_MANUAL_EVAL_GENERATION_RC=1
+RESULT: VERL_V125_MANUAL_EVAL_GENERATION_FAIL_RC=1

@@ -1,0 +1,23 @@
+{
+  "model_id": "/mnt/lv_model/npu60005420a/models/Qwen3-4B",
+  "adapter_name": "",
+  "adapter_path": null,
+  "dataset_id": "/mnt/lv_model/npu60005420a/data/gsm8k_owner_aligned_20260729/twinkle_test_official.parquet",
+  "split": "test",
+  "protocol": {
+    "template": "Template",
+    "enable_thinking": true,
+    "processor": "GSM8KProcessor",
+    "reward": "GSM8KAccuracyReward",
+    "temperature": 0.6,
+    "top_p": 1.0,
+    "max_tokens": 1024
+  },
+  "eval/accuracy": 0.3646702047005307,
+  "eval/sample_count": 1319,
+  "eval/prompt_count": 1319,
+  "eval/completion_length": 954.7475360121304,
+  "eval/max_completion_length": 1024,
+  "eval/latency_s": 4073.4188023973256,
+  "predictions_path": "/mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_twinkle_base_manual_eval_official1319_npu3/predictions.jsonl"
+}

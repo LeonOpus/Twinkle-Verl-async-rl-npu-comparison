@@ -1,0 +1,259 @@
+[
+    {
+        "Id": "2db727e975c6091334c44a2276c765fc50962d3b3a3b5025a2e0f21368019c7c",
+        "Created": "2026-07-24T09:33:44.060342377Z",
+        "Path": "/bin/bash",
+        "Args": [
+            "-c",
+            "    source /usr/local/Ascend/ascend-toolkit/set_env.sh &&     source /usr/local/Ascend/cann-9.0.0/share/info/ascendnpu-ir/bin/set_env.sh &&     source /usr/local/Ascend/nnal/atb/set_env.sh &&     exec \"$@\"",
+            "--",
+            "bash"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 1538902,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-07-30T02:11:29.866274657Z",
+            "FinishedAt": "2026-07-30T02:11:26.627356968Z"
+        },
+        "Image": "sha256:7ce36d0558311f40a1e99b753be34ececa343800dd93a1425da8ed9142c43d31",
+        "ResolvConfPath": "/mnt/lv_model/docker/containers/2db727e975c6091334c44a2276c765fc50962d3b3a3b5025a2e0f21368019c7c/resolv.conf",
+        "HostnamePath": "/mnt/lv_model/docker/containers/2db727e975c6091334c44a2276c765fc50962d3b3a3b5025a2e0f21368019c7c/hostname",
+        "HostsPath": "/mnt/lv_model/docker/containers/2db727e975c6091334c44a2276c765fc50962d3b3a3b5025a2e0f21368019c7c/hosts",
+        "LogPath": "/mnt/lv_model/docker/containers/2db727e975c6091334c44a2276c765fc50962d3b3a3b5025a2e0f21368019c7c/2db727e975c6091334c44a2276c765fc50962d3b3a3b5025a2e0f21368019c7c-json.log",
+        "Name": "/qy_twinkle_verl_cmp_20260724",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "unconfined",
+        "ExecIDs": [
+            "73e7abf024b9f71385ad6282031e0cac7af7da0d3a06db3db55a68431d6be25a",
+            "d66694c1d98eeb290ee460ddf0b4286e1ded8659cfaf040d9e19654fac8544e0"
+        ],
+        "HostConfig": {
+            "Binds": [
+                "/usr/local/Ascend/driver:/usr/local/Ascend/driver:ro",
+                "/usr/local/bin/npu-smi:/usr/local/bin/npu-smi:ro",
+                "/mnt/lv_model:/mnt/lv_model",
+                "/workspace:/workspace"
+            ],
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "host",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                38,
+                173
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "host",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": true,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": [
+                "label=disable"
+            ],
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 137438953472,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": [],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": null,
+            "ReadonlyPaths": null
+        },
+        "Storage": {
+            "RootFS": {
+                "Snapshot": {
+                    "Name": "overlayfs"
+                }
+            }
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/usr/local/Ascend/driver",
+                "Destination": "/usr/local/Ascend/driver",
+                "Mode": "ro",
+                "RW": false,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/usr/local/bin/npu-smi",
+                "Destination": "/usr/local/bin/npu-smi",
+                "Mode": "ro",
+                "RW": false,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/mnt/lv_model",
+                "Destination": "/mnt/lv_model",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rslave"
+            },
+            {
+                "Type": "bind",
+                "Source": "/workspace",
+                "Destination": "/workspace",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            }
+        ],
+        "Config": {
+            "Hostname": "AI04",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": true,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "Tty": true,
+            "OpenStdin": true,
+            "StdinOnce": true,
+            "Env": [
+                "ASCEND_RT_VISIBLE_DEVICES=0,1,2",
+                "PYTORCH_NPU_ALLOC_CONF=expandable_segments:True",
+                "PATH=/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/ascend-toolkit/latest/bin:/usr/local/Ascend/ascend-toolkit/latest/compiler/ccec_compiler/bin:/usr/local/Ascend/ascend-toolkit/latest/tools/ccec_compiler/bin:/usr/local/Ascend/cann-9.0.0/tools/show_kernel_debug_data:/usr/local/Ascend/cann-9.0.0/tools/msobjdump:/usr/local/Ascend/cann-9.0.0/bin:/usr/local/Ascend/cann-9.0.0/tools/ccec_compiler/bin:/usr/local/Ascend/cann-9.0.0/tools/profiler/bin:/usr/local/Ascend/cann-9.0.0/tools/ascend_system_advisor/asys:/usr/local/python3.11.15/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LD_LIBRARY_PATH=/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/lib:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/examples:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/tests/atbopstest:/usr/local/Ascend/cann-9.0.0/devlib:/usr/local/Ascend/ascend-toolkit/latest/tools/aml/lib64:/usr/local/Ascend/ascend-toolkit/latest/tools/aml/lib64/plugin:/usr/local/Ascend/ascend-toolkit/latest/lib64:/usr/local/Ascend/ascend-toolkit/latest/lib64/plugin/opskernel:/usr/local/Ascend/ascend-toolkit/latest/lib64/plugin/nnengine:/usr/local/Ascend/ascend-toolkit/latest/opp/built-in/op_impl/ai_core/tbe/op_tiling:/usr/local/Ascend/cann-9.0.0/tools/aml/lib64:/usr/local/Ascend/cann-9.0.0/tools/aml/lib64/plugin:/usr/local/Ascend/cann-9.0.0/lib64:/usr/local/Ascend/cann-9.0.0/lib64/plugin/opskernel:/usr/local/Ascend/cann-9.0.0/lib64/plugin/nnengine:/usr/local/Ascend/cann-9.0.0/opp/built-in/op_impl/ai_core/tbe/op_tiling:/usr/local/Ascend/driver/lib64:/usr/local/Ascend/driver/lib64/common/:/usr/local/Ascend/driver/lib64/driver/:/usr/local/python3.11.15/lib:",
+                "ASCEND_TOOLKIT_HOME=/usr/local/Ascend/cann-9.0.0",
+                "ASCEND_TOOLKIT_LATEST_HOME=/usr/local/Ascend/ascend-toolkit/latest",
+                "PYTHONPATH=/Megatron-LM:/usr/local/Ascend/ascend-toolkit/latest/python/site-packages:/usr/local/Ascend/ascend-toolkit/latest/opp/built-in/op_impl/ai_core/tbe:/usr/local/Ascend/cann-9.0.0/python/site-packages:/usr/local/Ascend/cann-9.0.0/opp/built-in/op_impl/ai_core/tbe:",
+                "ASCEND_AICPU_PATH=/usr/local/Ascend/cann-9.0.0",
+                "ASCEND_OPP_PATH=/usr/local/Ascend/cann-9.0.0/opp",
+                "TOOLCHAIN_HOME=/usr/local/Ascend/cann-9.0.0/toolkit",
+                "ASCEND_HOME_PATH=/usr/local/Ascend/cann-9.0.0",
+                "CMAKE_PREFIX_PATH=/usr/local/Ascend/cann-9.0.0/toolkit/tools/tikicpulib/lib/cmake:/usr/local/Ascend/cann-9.0.0/lib64/cmake",
+                "ATB_HOME_PATH=/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1",
+                "ATB_STREAM_SYNC_EVERY_KERNEL_ENABLE=0",
+                "ATB_STREAM_SYNC_EVERY_RUNNER_ENABLE=0",
+                "ATB_STREAM_SYNC_EVERY_OPERATION_ENABLE=0",
+                "ATB_OPSRUNNER_KERNEL_CACHE_LOCAL_COUNT=1",
+                "ATB_OPSRUNNER_KERNEL_CACHE_GLOABL_COUNT=5",
+                "ATB_WORKSPACE_MEM_ALLOC_ALG_TYPE=1",
+                "ATB_COMPARE_TILING_EVERY_KERNEL=0",
+                "ATB_SHARE_MEMORY_NAME_SUFFIX=",
+                "ATB_MATMUL_SHUFFLE_K_ENABLE=1",
+                "LCCL_DETERMINISTIC=0",
+                "LCCL_PARALLEL=0",
+                "PIP_DISABLE_PIP_VERSION_CHECK=1",
+                "PIP_DEFAULT_TIMEOUT=300",
+                "PIP_RETRIES=10",
+                "SOC_VERSION=ascend910b1",
+                "CANN_VERSION=9.0.0",
+                "MEGATRON_LM_PATH=/Megatron-LM",
+                "SETUPTOOLS_USE_DISTUTILS=stdlib",
+                "VLLM_USE_MODELSCOPE=True",
+                "LMDEPLOY_USE_MODELSCOPE=True",
+                "MODELSCOPE_CACHE=/mnt/workspace/.cache/modelscope/hub"
+            ],
+            "Cmd": [
+                "bash"
+            ],
+            "Image": "swr.cn-southwest-2.myhuaweicloud.com/ascend-sact/twinkle-npu-a2:v5",
+            "Volumes": null,
+            "WorkingDir": "/workspace",
+            "Entrypoint": [
+                "/bin/bash",
+                "-c",
+                "    source /usr/local/Ascend/ascend-toolkit/set_env.sh &&     source /usr/local/Ascend/cann-9.0.0/share/info/ascendnpu-ir/bin/set_env.sh &&     source /usr/local/Ascend/nnal/atb/set_env.sh &&     exec \"$@\"",
+                "--"
+            ],
+            "Labels": {
+                "org.opencontainers.image.version": "22.04"
+            }
+        },
+        "NetworkSettings": {
+            "SandboxID": "4f0a1da925783592c212ca2a4365ea34251543462e86a4c6a68aa707ed62d12f",
+            "SandboxKey": "/var/run/docker/netns/default",
+            "Ports": {},
+            "Networks": {
+                "host": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "f084bb007a32ff2b9fa9263a79644388413fe5e1ef983cdd14feaf1fbe665110",
+                    "EndpointID": "3b011ce77d535a950ad95fb4a328159b48e143a80d7f777f5524907cb7469a48",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "MacAddress": "",
+                    "IPPrefixLen": 0,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": null
+                }
+            }
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+            "digest": "sha256:7ce36d0558311f40a1e99b753be34ececa343800dd93a1425da8ed9142c43d31",
+            "size": 4964,
+            "platform": {
+                "architecture": "arm64",
+                "os": "linux"
+            }
+        }
+    }
+]

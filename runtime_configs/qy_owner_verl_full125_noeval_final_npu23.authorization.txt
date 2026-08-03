@@ -1,0 +1,7 @@
+authorization_time=2026-07-30 09:22:37 +0000
+authorized_change=trainer.test_freq 10 -> -1
+reason=负责人明确同意训练中关闭评测，125-step 完成后单独手动评测官方 GSM8K test 1319 题
+compatibility_change=update_weights_bucket_megabytes 256 -> 1536
+compatibility_reason=A2 单个权重同步 tensor 约 1483.75 MiB，原 256 MiB bucket 无法容纳
+unchanged=train_data,test_data,train_batch_size,rollout_n,learning_rate,lora,loss,reward,sampling,total_training_steps
+owner_yaml_sha256=bbf92475324e8912a3743c53c626353dae0041027eea68939db9b00dffe3a169

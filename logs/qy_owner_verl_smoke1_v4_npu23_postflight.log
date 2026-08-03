@@ -1,0 +1,49 @@
+=== TRAINING COMPLETION ===
+training_progress_100: True
+global_step_1_metric: True
+checkpoint_iteration: 1
+cleanup_warning_after_completion: True
+RESULT: VERL_SMOKE_V4_TRAINING_COMPLETION_PASS
+
+=== HBM PEAK AUDIT ===
+{'npu': 2, 'samples': 307, 'baseline_or_min_MiB': 3410, 'peak_MiB': 65520, 'total_MiB': 65536, 'peak_percent': 99.976, 'peak_time': '2026-07-30 01:27:04', 'increase_from_min_MiB': 62110}
+{'npu': 3, 'samples': 307, 'baseline_or_min_MiB': 3413, 'peak_MiB': 53988, 'total_MiB': 65536, 'peak_percent': 82.379, 'peak_time': '2026-07-30 01:29:48', 'increase_from_min_MiB': 50575}
+RESULT: VERL_SMOKE_V4_HBM_AUDIT_PASS
+
+=== ROLLOUT AND REWARD AUDIT ===
+first_record_schema: {'input': 'str', 'output': 'str', 'gts': 'str', 'score': 'float', 'step': 'int', 'uid': 'str'}
+rollout_records: 64
+unique_prompts: 16
+samples_per_prompt: [4]
+stored_distribution: {0.0: 53, 1.0: 11}
+recomputed_distribution: {0.0: 53, 1.0: 11}
+reward_mismatches: []
+RESULT: VERL_SMOKE_V4_64_ROLLOUT_REWARD_PASS
+
+=== LORA AND OPTIMIZER AUDIT ===
+lora_meta: {'r': 16, 'lora_alpha': 16, 'task_type': 'CAUSAL_LM'}
+loading_model: /mnt/lv_model/npu60005420a/qy_owner_smoke_20260729/qy_owner_verl_smoke1_v4_npu23/checkpoints/global_step_1/actor/model_world_size_1_rank_0.pt
+Traceback (most recent call last):
+  File "<stdin>", line 74, in <module>
+  File "<stdin>", line 44, in summarize
+  File "/usr/local/python3.11.15/lib/python3.11/site-packages/torch/_compile.py", line 53, in inner
+    return disable_fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python3.11.15/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 1044, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python3.11.15/lib/python3.11/site-packages/torch/distributed/tensor/_api.py", line 349, in __torch_dispatch__
+    return DTensor._op_dispatcher.dispatch(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python3.11.15/lib/python3.11/site-packages/torch/distributed/tensor/_dispatch.py", line 156, in dispatch
+    self.sharding_propagator.propagate(op_info)
+  File "/usr/local/python3.11.15/lib/python3.11/site-packages/torch/distributed/tensor/_sharding_prop.py", line 327, in propagate
+    OutputSharding, self.propagate_op_sharding(op_info.schema)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python3.11.15/lib/python3.11/site-packages/torch/distributed/tensor/_sharding_prop.py", line 46, in __call__
+    return self.cache(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python3.11.15/lib/python3.11/site-packages/torch/distributed/tensor/_sharding_prop.py", line 554, in propagate_op_sharding_non_cached
+    raise NotImplementedError(
+NotImplementedError: Operator aten.count_nonzero.default does not have a sharding strategy registered.
+[ERROR] 2026-07-29-18:39:02 (PID:41269, Device:-1, RankID:-1) ERR99999 UNKNOWN applicaiton exception

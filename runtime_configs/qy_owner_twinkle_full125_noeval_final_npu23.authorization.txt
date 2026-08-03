@@ -1,0 +1,5 @@
+authorization_time=2026-07-30 04:24:23 +0000
+authorized_change=evaluation.enabled true -> false
+reason=负责人明确同意训练中关闭评测，125-step 完成后单独手动评测官方 GSM8K test 1319 题
+unchanged=max_steps,data_num,batch_size,num_generations,learning_rate,lora,loss,reward,sampling
+owner_yaml_sha256=06fb6643548a609b8a82dc3a29d9a3506e66b762c4d43867ada9d5103b981a0d

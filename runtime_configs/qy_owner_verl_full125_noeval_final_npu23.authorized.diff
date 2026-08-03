@@ -1,0 +1,20 @@
+--- /mnt/lv_model/npu60005420a/packages/twinkle_aligned_verl_grpo_npu_2cards_owner_20260729/v1_separate_async_grpo_npu_2cards.yaml	2026-07-29 12:52:03.000000000 +0000
++++ /mnt/lv_model/npu60005420a/qy_runtime_configs/qy_owner_verl_full125_noeval_final_npu23.yaml	2026-07-30 09:22:37.970653403 +0000
+@@ -98,7 +98,7 @@
+     checkpoint_engine:
+       # On NPU, HCCLCheckpointEngine is registered under the "nccl" backend key.
+       backend: nccl
+-      update_weights_bucket_megabytes: 256
++      update_weights_bucket_megabytes: 1536
+ 
+ reward:
+   num_workers: 4
+@@ -123,7 +123,7 @@
+   rollout_data_dir: ${oc.env:OUTPUT_DIR}/rollouts
+   validation_data_dir: ${oc.env:OUTPUT_DIR}/validation_data
+   val_before_train: false
+-  test_freq: 10
++  test_freq: -1
+   save_freq: 125
+   total_epochs: 1
+   total_training_steps: 125

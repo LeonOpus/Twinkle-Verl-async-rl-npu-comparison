@@ -1,0 +1,106 @@
+[
+    {
+        "Id": "sha256:7ce36d0558311f40a1e99b753be34ececa343800dd93a1425da8ed9142c43d31",
+        "RepoTags": [
+            "swr.cn-southwest-2.myhuaweicloud.com/ascend-sact/twinkle-npu-a2:v5"
+        ],
+        "RepoDigests": [
+            "swr.cn-southwest-2.myhuaweicloud.com/ascend-sact/twinkle-npu-a2@sha256:7ce36d0558311f40a1e99b753be34ececa343800dd93a1425da8ed9142c43d31"
+        ],
+        "Created": "2026-07-01T12:09:49.97794018Z",
+        "Config": {
+            "Env": [
+                "PATH=/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/bin:/usr/local/Ascend/ascend-toolkit/latest/bin:/usr/local/Ascend/ascend-toolkit/latest/compiler/ccec_compiler/bin:/usr/local/Ascend/ascend-toolkit/latest/tools/ccec_compiler/bin:/usr/local/Ascend/cann-9.0.0/tools/show_kernel_debug_data:/usr/local/Ascend/cann-9.0.0/tools/msobjdump:/usr/local/Ascend/cann-9.0.0/bin:/usr/local/Ascend/cann-9.0.0/tools/ccec_compiler/bin:/usr/local/Ascend/cann-9.0.0/tools/profiler/bin:/usr/local/Ascend/cann-9.0.0/tools/ascend_system_advisor/asys:/usr/local/python3.11.15/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LD_LIBRARY_PATH=/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/lib:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/examples:/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1/tests/atbopstest:/usr/local/Ascend/cann-9.0.0/devlib:/usr/local/Ascend/ascend-toolkit/latest/tools/aml/lib64:/usr/local/Ascend/ascend-toolkit/latest/tools/aml/lib64/plugin:/usr/local/Ascend/ascend-toolkit/latest/lib64:/usr/local/Ascend/ascend-toolkit/latest/lib64/plugin/opskernel:/usr/local/Ascend/ascend-toolkit/latest/lib64/plugin/nnengine:/usr/local/Ascend/ascend-toolkit/latest/opp/built-in/op_impl/ai_core/tbe/op_tiling:/usr/local/Ascend/cann-9.0.0/tools/aml/lib64:/usr/local/Ascend/cann-9.0.0/tools/aml/lib64/plugin:/usr/local/Ascend/cann-9.0.0/lib64:/usr/local/Ascend/cann-9.0.0/lib64/plugin/opskernel:/usr/local/Ascend/cann-9.0.0/lib64/plugin/nnengine:/usr/local/Ascend/cann-9.0.0/opp/built-in/op_impl/ai_core/tbe/op_tiling:/usr/local/Ascend/driver/lib64:/usr/local/Ascend/driver/lib64/common/:/usr/local/Ascend/driver/lib64/driver/:/usr/local/python3.11.15/lib:",
+                "ASCEND_TOOLKIT_HOME=/usr/local/Ascend/cann-9.0.0",
+                "ASCEND_TOOLKIT_LATEST_HOME=/usr/local/Ascend/ascend-toolkit/latest",
+                "PYTHONPATH=/Megatron-LM:/usr/local/Ascend/ascend-toolkit/latest/python/site-packages:/usr/local/Ascend/ascend-toolkit/latest/opp/built-in/op_impl/ai_core/tbe:/usr/local/Ascend/cann-9.0.0/python/site-packages:/usr/local/Ascend/cann-9.0.0/opp/built-in/op_impl/ai_core/tbe:",
+                "ASCEND_AICPU_PATH=/usr/local/Ascend/cann-9.0.0",
+                "ASCEND_OPP_PATH=/usr/local/Ascend/cann-9.0.0/opp",
+                "TOOLCHAIN_HOME=/usr/local/Ascend/cann-9.0.0/toolkit",
+                "ASCEND_HOME_PATH=/usr/local/Ascend/cann-9.0.0",
+                "CMAKE_PREFIX_PATH=/usr/local/Ascend/cann-9.0.0/toolkit/tools/tikicpulib/lib/cmake:/usr/local/Ascend/cann-9.0.0/lib64/cmake",
+                "ATB_HOME_PATH=/usr/local/Ascend/nnal/atb/latest/atb/cxx_abi_1",
+                "ATB_STREAM_SYNC_EVERY_KERNEL_ENABLE=0",
+                "ATB_STREAM_SYNC_EVERY_RUNNER_ENABLE=0",
+                "ATB_STREAM_SYNC_EVERY_OPERATION_ENABLE=0",
+                "ATB_OPSRUNNER_KERNEL_CACHE_LOCAL_COUNT=1",
+                "ATB_OPSRUNNER_KERNEL_CACHE_GLOABL_COUNT=5",
+                "ATB_WORKSPACE_MEM_ALLOC_ALG_TYPE=1",
+                "ATB_COMPARE_TILING_EVERY_KERNEL=0",
+                "ATB_SHARE_MEMORY_NAME_SUFFIX=",
+                "ATB_MATMUL_SHUFFLE_K_ENABLE=1",
+                "LCCL_DETERMINISTIC=0",
+                "LCCL_PARALLEL=0",
+                "PIP_DISABLE_PIP_VERSION_CHECK=1",
+                "PIP_DEFAULT_TIMEOUT=300",
+                "PIP_RETRIES=10",
+                "SOC_VERSION=ascend910b1",
+                "CANN_VERSION=9.0.0",
+                "MEGATRON_LM_PATH=/Megatron-LM",
+                "SETUPTOOLS_USE_DISTUTILS=stdlib",
+                "VLLM_USE_MODELSCOPE=True",
+                "LMDEPLOY_USE_MODELSCOPE=True",
+                "MODELSCOPE_CACHE=/mnt/workspace/.cache/modelscope/hub"
+            ],
+            "Entrypoint": [
+                "/bin/bash",
+                "-c",
+                "    source /usr/local/Ascend/ascend-toolkit/set_env.sh &&     source /usr/local/Ascend/cann-9.0.0/share/info/ascendnpu-ir/bin/set_env.sh &&     source /usr/local/Ascend/nnal/atb/set_env.sh &&     exec \"$@\"",
+                "--"
+            ],
+            "Cmd": [
+                "/bin/bash"
+            ],
+            "WorkingDir": "/workspace",
+            "Labels": {
+                "org.opencontainers.image.version": "22.04"
+            }
+        },
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Size": 9122585510,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:caa9956c50e9facf65021733bc7890b61ce94076388533506c80c8ae1b603db4",
+                "sha256:40b5cc03b44fcb2fae1051ca0d632083e2bad3d181e97fe9d1c46442f7b07d05",
+                "sha256:f4ebcea94f8b598c9db78971138db5fab3b51885ac84ff84f9f44ce52c423d03",
+                "sha256:509396cc3ff1456023f4f55de5d70dab7a46eca65d742ba83a72c3f39a0c2d05",
+                "sha256:9744796d7ed6ec1b0601640d0b19294cda2041e9250ec4eeb3a76c544598f8d7",
+                "sha256:ecebf039bdb7cf7b7b96e13927b37b3a13739e2cbe039c3bffaf42ae4b7e5d4e",
+                "sha256:a55d8e327a5ca285ae9768f8a6081074a9a980d0a298022ecd83a744224d97d0",
+                "sha256:a607d4f76bd877c2ecd28bdee9cabd1a27cccb73ddb8982c34ddb8dca4fc075f",
+                "sha256:6c0c7f76c919e841a4902b83b55b30370ce06275b4bb886ce701c76eba5d24c5",
+                "sha256:d839152189bcd2a02d5a1a8a01f7dfa5869fca7e0324a438f710cac995be0e4f",
+                "sha256:08491bcfdcab05727981743c2e605969ce72775d9114ca4ba464717794aa00ce",
+                "sha256:5c72e5e489efd227390f6e173dec53a1d8d2d69b661c5410ef79064b35c2d6d1",
+                "sha256:528ee78ff9b2acd8a6f13c5a5b036f522e2864fc5b3a7f31188c44a2047742ad",
+                "sha256:cea4e43138b2350122a4ca58e4707c9e62817e2760acb939e8b69810ddf479ca",
+                "sha256:aa755f805de2c591b643cb6b1e1ea23738ce4d7e537dd8c40e551a9f061e32cc",
+                "sha256:ef60820c05d7ffecc1942a75f868240171fa575862a7762ff80109d5e13b2daa",
+                "sha256:85b75352fe7426a5ed2e26df02074eb3b10254c7a7119876d2981ea8e084774c",
+                "sha256:d3e545ca76f1485d02e0f97a1e1ab0067b47e2f1d7df2eac8ddfeb9e76f1e5dc",
+                "sha256:ba054eb73e5a149ca9a52e13dbcb1cc3b994ba6f9cafcb6a20744c2543f491ea",
+                "sha256:66d1c4134520d095c887f2321eb839960fb351fd873ef1e16c0c3e1a249ebea0",
+                "sha256:eda46745ca0fd90d8da2359efccca9291208288c1246eb13a81e343608be710c",
+                "sha256:d990b70058df36a37fc4747142cf3f7b037a3437d2e416fb15730acef189fae3"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-07-10T06:51:15.077234401Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+            "digest": "sha256:7ce36d0558311f40a1e99b753be34ececa343800dd93a1425da8ed9142c43d31",
+            "size": 4964
+        },
+        "Identity": {
+            "Pull": [
+                {
+                    "Repository": "swr.cn-southwest-2.myhuaweicloud.com/ascend-sact/twinkle-npu-a2"
+                }
+            ]
+        }
+    }
+]

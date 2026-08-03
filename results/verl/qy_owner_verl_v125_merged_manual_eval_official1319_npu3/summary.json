@@ -1,0 +1,18 @@
+{
+  "eval/count": 1319,
+  "eval/correct": 532,
+  "eval/incorrect": 787,
+  "eval/accuracy": 0.40333586050037906,
+  "model_path": "/mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_verl_full125_noeval_final_npu23/merged_hf_v125_for_eval",
+  "adapter_path": "",
+  "protocol": {
+    "dataset": "official_gsm8k_test_1319",
+    "reward": "owner_gsm8k_accuracy_reward.compute_score",
+    "temperature": 0.6,
+    "top_p": 1.0,
+    "top_k": -1,
+    "n": 1,
+    "max_tokens": 1024,
+    "enable_thinking": true
+  }
+}

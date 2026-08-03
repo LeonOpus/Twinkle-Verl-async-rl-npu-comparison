@@ -1,0 +1,414 @@
+=== FORMAL MANUAL EVAL IDENTITY ===
+twinkle_commit=b0798fd7260ce5c62771053c28a4ee731932d868
+evaluator=/mnt/lv_model/npu60005420a/qy_container_scripts/qy_eval_gsm8k_owner_protocol.py
+586f2080a63ad44a2752720c8e6cbde084c7fc5d4936b49ffea85df35b95dd6c  /mnt/lv_model/npu60005420a/qy_container_scripts/qy_eval_gsm8k_owner_protocol.py
+model=/mnt/lv_model/npu60005420a/models/Qwen3-4B
+test=/mnt/lv_model/npu60005420a/data/gsm8k_owner_aligned_20260729/twinkle_test_official.parquet
+907197334bd212ce3c38cfab5993cec227ec4b34e1afade59908170e855d8c97  /mnt/lv_model/npu60005420a/data/gsm8k_owner_aligned_20260729/twinkle_test_official.parquet
+adapter=
+adapter_mode=base_model_only
+protocol=GSM8KProcessor+GSM8KAccuracyReward
+sample_count=1319
+RESULT: TWINKLE_BASE_MANUAL_EVAL_PREFLIGHT_PASS
+2026-07-31 08:00:16,099	INFO worker.py:2015 -- Started a local Ray instance. View the dashboard at [1m[32mhttp://127.0.0.1:8265 [39m[22m
+[2026-07-31 08:00:34][INFO:twinkle] nodes: ['0f899209']
+[2026-07-31 08:00:34][INFO:twinkle] node_ranks: [0]
+[2026-07-31 08:00:34][INFO:twinkle] node2pg keys: [0]
+[33m(raylet)[0m It looks like you're creating a detached actor in an anonymous namespace. In order to access this actor in the future, you will need to explicitly connect to this namespace with ray.init(namespace="a488fe30-8d34-4d20-970f-a6d8ad7215e9", ...)
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:00:53 [__init__.py:44] Available plugins for group vllm.platform_plugins:
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:00:53 [__init__.py:46] - ascend -> vllm_ascend:register
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:00:53 [__init__.py:49] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:00:53 [__init__.py:239] Platform plugin ascend is activated
+[36m(vLLMSampler pid=1195388)[0m Modular Diffusers is currently an experimental feature under active development. The API is subject to breaking changes in future releases.
+[36m(vLLMSampler pid=1195388)[0m [transformers] `Siglip2ImageProcessorFast` is deprecated. The `Fast` suffix for image processors has been removed; use `Siglip2ImageProcessor` instead.
+[36m(vLLMSampler pid=1195388)[0m /usr/local/python3.11.15/lib/python3.11/site-packages/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+[36m(vLLMSampler pid=1195388)[0m   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:00:59 [__init__.py:110] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:00:59 [__init__.py:110] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+[36m(vLLMSampler pid=1195388)[0m WARNING 07-31 08:01:01 [envs.py:1717] Unknown vLLM environment variable detected: VLLM_USE_V1
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:01:01 [model.py:533] Resolved architecture: Qwen3ForCausalLM
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:01:01 [model.py:1582] Using max model len 2048
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:01:01 [arg_utils.py:1569] Using ray runtime env (env vars redacted): {'env_vars': {'ASCEND_AICPU_PATH': '***', 'ASCEND_HOME_PATH': '***', 'ASCEND_OPP_PATH': '***', 'ASCEND_RT_VISIBLE_DEVICES': '***', 'ASCEND_TOOLKIT_HOME': '***', 'ASCEND_TOOLKIT_LATEST_HOME': '***', 'ATB_COMPARE_TILING_EVERY_KERNEL': '***', 'ATB_HOME_PATH': '***', 'ATB_MATMUL_SHUFFLE_K_ENABLE': '***', 'ATB_OPSRUNNER_KERNEL_CACHE_GLOABL_COUNT': '***', 'ATB_OPSRUNNER_KERNEL_CACHE_LOCAL_COUNT': '***', 'ATB_SHARE_MEMORY_NAME_SUFFIX': '***', 'ATB_STREAM_SYNC_EVERY_KERNEL_ENABLE': '***', 'ATB_STREAM_SYNC_EVERY_OPERATION_ENABLE': '***', 'ATB_STREAM_SYNC_EVERY_RUNNER_ENABLE': '***', 'ATB_WORKSPACE_MEM_ALLOC_ALG_TYPE': '***', 'CANN_VERSION': '***', 'CLUSTER_NAME': '***', 'CMAKE_PREFIX_PATH': '***', 'HCCL_CONNECT_TIMEOUT': '***', 'HCCL_HOST_SOCKET_PORT_RANGE': '***', 'HCCL_NPU_SOCKET_PORT_RANGE': '***', 'HOME': '***', 'HOSTNAME': '***', 'KMP_DUPLICATE_LIB_OK': '***', 'KMP_INIT_AT_FORK': '***', 'LCCL_DETERMINISTIC': '***', 'LCCL_PARALLEL': '***', 'LC_CTYPE': '***', 'LD_LIBRARY_PATH': '***', 'LMDEPLOY_USE_MODELSCOPE': '***', 'LOCAL_RANK': '***', 'MASTER_ADDR': '***', 'MASTER_PORT': '***', 'MEGATRON_LM_PATH': '***', 'MODELSCOPE_CACHE': '***', 'PATH': '***', 'PIP_DEFAULT_TIMEOUT': '***', 'PIP_DISABLE_PIP_VERSION_CHECK': '***', 'PIP_RETRIES': '***', 'PWD': '***', 'PYTHONBREAKPOINT': '***', 'PYTHONPATH': '***', 'PYTORCH_NVML_BASED_CUDA_CHECK': '***', 'RANK': '***', 'RAY_CLIENT_MODE': '***', 'RAY_DEDUP_LOGS': '***', 'RAY_EXPERIMENTAL_NOSET_ASCEND_RT_VISIBLE_DEVICES': '***', 'RAY_EXPERIMENTAL_NOSET_CUDA_VISIBLE_DEVICES': '***', 'RAY_EXPERIMENTAL_NOSET_HABANA_VISIBLE_MODULES': '***', 'RAY_EXPERIMENTAL_NOSET_HIP_VISIBLE_DEVICES': '***', 'RAY_EXPERIMENTAL_NOSET_NEURON_RT_VISIBLE_CORES': '***', 'RAY_EXPERIMENTAL_NOSET_ONEAPI_DEVICE_SELECTOR': '***', 'RAY_EXPERIMENTAL_NOSET_ROCR_VISIBLE_DEVICES': '***', 'RAY_EXPERIMENTAL_NOSET_TPU_VISIBLE_CHIPS': '***', 'RAY_USAGE_STATS_ENABLED': '***', 'RUNNER': '***', 'SETUPTOOLS_USE_DISTUTILS': '***', 'SHLVL': '***', 'SOC_VERSION': '***', 'TASK_QUEUE_ENABLE': '***', 'TOOLCHAIN_HOME': '***', 'TORCHINDUCTOR_COMPILE_THREADS': '***', 'TORCH_DEVICE_BACKEND_AUTOLOAD': '***', 'TWINKLE_FULL_DETERMINISM': '***', 'TWINKLE_MODE': '***', 'TWINKLE_SEED': '***', 'TWINKLE_SESSION_ID': '***', 'VLLM_USE_MODELSCOPE': '***', 'WORKER_NAME': '***', 'WORLD_SIZE': '***', '_': '***'}}
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:01:01 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=2048.
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:01:01 [vllm.py:754] Asynchronous scheduling is enabled.
+[36m(vLLMSampler pid=1195388)[0m WARNING 07-31 08:01:01 [platform.py:783] Parameter '--disable-cascade-attn' is a GPU-specific feature. Resetting to False for Ascend.
+[36m(vLLMSampler pid=1195388)[0m WARNING 07-31 08:01:01 [platform.py:872] Ignored parameter 'disable_flashinfer_prefill'. This is a GPU-specific feature not supported on Ascend. Resetting to False.
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:01:01 [ascend_config.py:426] Dynamic EPLB is False
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:01:01 [ascend_config.py:427] The number of redundant experts is 0
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:01:01 [platform.py:370] PIECEWISE compilation enabled on NPU. use_inductor not supported - using only ACL Graph mode
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:01:01 [utils.py:549] Calculated maximum supported batch sizes for ACL graph: 48
+[36m(vLLMSampler pid=1195388)[0m WARNING 07-31 08:01:01 [utils.py:550] Currently, communication is performed using FFTS+ method, which reduces the number of available streams and, as a result, limits the range of runtime shapes that can be handled. To both improve communication performance and increase the number of supported shapes, set HCCL_OP_EXPANSION_MODE=AIV.
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:01:01 [utils.py:582] No adjustment needed for ACL graph batch sizes: Qwen3ForCausalLM model (layers: 36) with 11 sizes
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:01:01 [utils.py:1188] Block size is set to 128 if prefix cache or chunked prefill is enabled.
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:01:01 [platform.py:536] Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:01:01 [compilation.py:289] Enabled custom fusions: norm_quant, act_quant
+[36m(vLLMSampler pid=1195388)[0m Modular Diffusers is currently an experimental feature under active development. The API is subject to breaking changes in future releases.
+[36m(vLLMSampler pid=1195388)[0m [transformers] `Siglip2ImageProcessorFast` is deprecated. The `Fast` suffix for image processors has been removed; use `Siglip2ImageProcessor` instead.
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:01:22 [__init__.py:44] Available plugins for group vllm.platform_plugins:
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:01:22 [__init__.py:46] - ascend -> vllm_ascend:register
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:01:22 [__init__.py:49] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+[36m(vLLMSampler pid=1195388)[0m INFO 07-31 08:01:22 [__init__.py:239] Platform plugin ascend is activated
+[36m(vLLMSampler pid=1195388)[0m /usr/local/python3.11.15/lib/python3.11/site-packages/_distutils_hack/__init__.py:53: UserWarning: Reliance on distutils from stdlib is deprecated. Users must rely on setuptools to provide the distutils module. Avoid importing distutils or import setuptools first, and avoid setting SETUPTOOLS_USE_DISTUTILS=stdlib. Register concerns at https://github.com/pypa/setuptools/issues/new?template=distutils-deprecation.yml
+[36m(vLLMSampler pid=1195388)[0m   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:24 [__init__.py:110] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:25 [__init__.py:110] Registered model loader `<class 'vllm_ascend.model_loader.rfork.rfork_loader.RForkModelLoader'>` with load format `rfork`
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:25 [core.py:103] Initializing a V1 LLM engine (v0.18.0) with config: model='/mnt/lv_model/npu60005420a/models/Qwen3-4B', speculative_config=None, tokenizer='/mnt/lv_model/npu60005420a/models/Qwen3-4B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=2048, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=True, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=npu, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False), seed=1, served_model_name=/mnt/lv_model/npu60005420a/models/Qwen3-4B, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'vllm_ascend.compilation.compiler_interface.AscendCompiler', 'custom_ops': ['all'], 'splitting_ops': ['vllm::unified_attention', 'vllm::unified_attention_with_output', 'vllm::unified_mla_attention', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::gdn_attention_core', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::kda_attention', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update', 'vllm::mla_forward'], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_endpoints': [2048], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.PIECEWISE: 1>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 64, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': True, 'static_all_moe_layers': []}
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) [transformers] `Qwen2VLImageProcessorFast` is deprecated. The `Fast` suffix for image processors has been removed; use `Qwen2VLImageProcessor` instead.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:29 [worker_base.py:269] Injected <class 'twinkle.sampler.vllm_sampler.vllm_worker_extension.TwinkleWorkerExtension'> into <class 'vllm_ascend.worker.worker.NPUWorker'> for extended collective_rpc calls ['_convert_peft_to_vllm_lora_name', '_get_zmq_handle', '_load_weights', 'get_state_keys', 'load_synced_weights', 'monkey_patch_model', 'update_weights_from_ipc']
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:29 [ascend_config.py:426] Dynamic EPLB is False
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:29 [ascend_config.py:427] The number of redundant experts is 0
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:31 [parallel_state.py:1395] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://10.17.0.41:45839 backend=hccl
+[36m(vLLMSampler pid=1195388)[0m [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[36m(vLLMSampler pid=1195388)[0m [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[36m(vLLMSampler pid=1195388)[0m [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[36m(vLLMSampler pid=1195388)[0m [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[36m(vLLMSampler pid=1195388)[0m [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[36m(vLLMSampler pid=1195388)[0m [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:31 [parallel_state.py:1717] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+[36m(vLLMSampler pid=1195388)[0m [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:33 [cpu_binding.py:329] [cpu_bind_mode] mode=topo_affinity rank=0 visible_npus=[3]
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:33 [cpu_binding.py:376] The CPU allocation plan is as follows:
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:33 [cpu_binding.py:381] NPU3: main=[98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141]  acl=[142]  release=[[143]]
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:34 [cpu_binding.py:392] The 'migratepages' command is not available, skipping memory binding.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:34 [cpu_binding.py:497] NPU3(PCI 0000:82:00.0): sq_send_trigger_irq IRQ_ID=2892 -> CPU96, cq_update_irq IRQ_ID=2893 -> CPU97
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:35 [model_runner_v1.py:2589] Starting to load model /mnt/lv_model/npu60005420a/models/Qwen3-4B...
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:37 [compilation.py:942] Using OOT custom backend for compilation.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:37 [compilation.py:942] Using OOT custom backend for compilation.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) Loading safetensors checkpoint shards:   0% Completed | 0/3 [00:00<?, ?it/s]
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) Loading safetensors checkpoint shards:  33% Completed | 1/3 [00:01<00:02,  1.50s/it]
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) Loading safetensors checkpoint shards:  67% Completed | 2/3 [00:02<00:01,  1.46s/it]
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:40 [default_loader.py:384] Loading weights took 3.24 seconds
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) Loading safetensors checkpoint shards: 100% Completed | 3/3 [00:03<00:00,  1.08it/s]
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) Loading safetensors checkpoint shards: 100% Completed | 3/3 [00:03<00:00,  1.07s/it]
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) 
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:42 [model_runner_v1.py:2616] Loading model weights took 7.5219 GB
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:53 [backends.py:988] Using cache directory: /root/.cache/vllm/torch_compile_cache/b3927361d2/rank_0_0/backbone for vLLM's torch.compile
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:53 [backends.py:1048] Dynamo bytecode transform time: 9.67 s
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:56 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:56 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:57 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:58 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:58 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:59 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:01:59 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:00 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:01 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:01 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:02 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:02 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:03 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:04 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:04 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:05 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:05 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:06 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:07 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:08 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:09 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:10 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:10 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:11 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:11 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:12 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:13 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:13 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:14 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:14 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:15 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:16 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:16 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:17 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:18 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:18 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:19 [compiler_interface.py:162] enable_npugraph_ex is enabled, which will bring graph compilation optimization.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:105: UserWarning: The following torchair config or properties may not take effect or report error in reduce-overhead mode: config.experimental_config.enable_view_optimize:True, set_dim_gears, dynamo_export, scope, npu_print
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn(
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) /usr/local/python3.11.15/lib/python3.11/site-packages/torch_npu/dynamo/torchair/configs/compiler_config.py:112: DeprecationWarning: The "reduce-overhead" mode configuration will be deprecated. Please use the "npugraph_ex" backend.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044)   warnings.warn("The \"reduce-overhead\" mode configuration will be deprecated. "
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:19 [backends.py:387] Compiling a graph for compile range (1, 2048) takes 23.38 s
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:32 [monitor.py:48] torch.compile and initial profiling/warmup run together took 48.73 s in total
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:34 [worker.py:357] Available KV cache memory: 34.96 GiB
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:34 [kv_cache_utils.py:1316] GPU KV cache size: 254,464 tokens
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:34 [kv_cache_utils.py:1321] Maximum concurrency for 2,048 tokens per request: 124.25x
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/11 [00:00<?, ?it/s]
+[36m(vLLMSampler pid=1195388)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   9%|▉         | 1/11 [00:00<00:02,  4.24it/s]
+[36m(vLLMSampler pid=1195388)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  18%|█▊        | 2/11 [00:05<00:30,  3.42s/it]
+[36m(vLLMSampler pid=1195388)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  27%|██▋       | 3/11 [00:06<00:15,  1.97s/it]
+[36m(vLLMSampler pid=1195388)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  36%|███▋      | 4/11 [00:06<00:09,  1.29s/it]
+[36m(vLLMSampler pid=1195388)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  45%|████▌     | 5/11 [00:06<00:05,  1.09it/s]
+[36m(vLLMSampler pid=1195388)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  55%|█████▍    | 6/11 [00:06<00:03,  1.46it/s]
+[36m(vLLMSampler pid=1195388)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  64%|██████▎   | 7/11 [00:07<00:02,  1.88it/s]
+[36m(vLLMSampler pid=1195388)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  73%|███████▎  | 8/11 [00:07<00:01,  2.22it/s]
+[36m(vLLMSampler pid=1195388)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  82%|████████▏ | 9/11 [00:07<00:00,  2.57it/s]
+[36m(vLLMSampler pid=1195388)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  91%|█████████ | 10/11 [00:07<00:00,  2.97it/s]
+[36m(vLLMSampler pid=1195388)[0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 11/11 [00:15<00:00,  2.63s/it]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 11/11 [00:15<00:00,  1.43s/it]
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:51 [gpu_model_runner.py:5746] Graph capturing finished in 17 secs, took 0.05 GiB
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:51 [core.py:281] init engine (profile, create kv cache, warmup model) took 68.50 seconds
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:53 [vllm.py:754] Asynchronous scheduling is enabled.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:53 [platform.py:370] PIECEWISE compilation enabled on NPU. use_inductor not supported - using only ACL Graph mode
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:53 [utils.py:549] Calculated maximum supported batch sizes for ACL graph: 48
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) WARNING 07-31 08:02:53 [utils.py:550] Currently, communication is performed using FFTS+ method, which reduces the number of available streams and, as a result, limits the range of runtime shapes that can be handled. To both improve communication performance and increase the number of supported shapes, set HCCL_OP_EXPANSION_MODE=AIV.
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:53 [utils.py:582] No adjustment needed for ACL graph batch sizes: Qwen3ForCausalLM model (layers: 36) with 11 sizes
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:53 [platform.py:536] Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:53 [compilation.py:289] Enabled custom fusions: norm_quant, act_quant
+[36m(vLLMSampler pid=1195388)[0m [2026-07-31 08:02:53][INFO:twinkle] VLLMEngine initialized: model=/mnt/lv_model/npu60005420a/models/Qwen3-4B
+[36m(vLLMSampler pid=1195388)[0m [transformers] `Qwen2VLImageProcessorFast` is deprecated. The `Fast` suffix for image processors has been removed; use `Qwen2VLImageProcessor` instead.
+[36m(vLLMSampler pid=1195388)[0m [transformers] return_assistant_tokens_mask==True but chat template does not contain `{% generation %}` keyword.
+[36m(vLLMSampler pid=1195388)[0m WARNING 07-31 08:02:54 [input_processor.py:227] Passing raw prompts to InputProcessor is deprecated and will be removed in v0.18. You should instead pass the outputs of Renderer.render_cmpl() or Renderer.render_chat().
+[36m(vLLMSampler pid=1195388)[0m (EngineCore pid=1196044) INFO 07-31 08:02:55 [acl_graph.py:196] Replaying aclgraph
+[2026-07-31 08:03:39][INFO:twinkle] GSM8K owner eval: prompts=16/1319 samples=16 accuracy=0.1875
+[2026-07-31 08:04:24][INFO:twinkle] GSM8K owner eval: prompts=32/1319 samples=32 accuracy=0.3125
+[2026-07-31 08:05:09][INFO:twinkle] GSM8K owner eval: prompts=48/1319 samples=48 accuracy=0.2708
+[2026-07-31 08:05:53][INFO:twinkle] GSM8K owner eval: prompts=64/1319 samples=64 accuracy=0.2969
+[2026-07-31 08:06:37][INFO:twinkle] GSM8K owner eval: prompts=80/1319 samples=80 accuracy=0.3250
+[2026-07-31 08:07:22][INFO:twinkle] GSM8K owner eval: prompts=96/1319 samples=96 accuracy=0.3438
+[2026-07-31 08:08:07][INFO:twinkle] GSM8K owner eval: prompts=112/1319 samples=112 accuracy=0.3393
+[2026-07-31 08:08:53][INFO:twinkle] GSM8K owner eval: prompts=128/1319 samples=128 accuracy=0.3438
+[2026-07-31 08:09:39][INFO:twinkle] GSM8K owner eval: prompts=144/1319 samples=144 accuracy=0.3681
+[2026-07-31 08:10:29][INFO:twinkle] GSM8K owner eval: prompts=160/1319 samples=160 accuracy=0.3750
+[2026-07-31 08:11:18][INFO:twinkle] GSM8K owner eval: prompts=176/1319 samples=176 accuracy=0.3636
+[2026-07-31 08:12:08][INFO:twinkle] GSM8K owner eval: prompts=192/1319 samples=192 accuracy=0.3698
+[2026-07-31 08:12:58][INFO:twinkle] GSM8K owner eval: prompts=208/1319 samples=208 accuracy=0.3606
+[2026-07-31 08:13:48][INFO:twinkle] GSM8K owner eval: prompts=224/1319 samples=224 accuracy=0.3661
+[2026-07-31 08:14:38][INFO:twinkle] GSM8K owner eval: prompts=240/1319 samples=240 accuracy=0.3542
+[2026-07-31 08:15:28][INFO:twinkle] GSM8K owner eval: prompts=256/1319 samples=256 accuracy=0.3477
+[2026-07-31 08:16:19][INFO:twinkle] GSM8K owner eval: prompts=272/1319 samples=272 accuracy=0.3419
+[2026-07-31 08:17:08][INFO:twinkle] GSM8K owner eval: prompts=288/1319 samples=288 accuracy=0.3507
+[2026-07-31 08:17:58][INFO:twinkle] GSM8K owner eval: prompts=304/1319 samples=304 accuracy=0.3487
+[2026-07-31 08:18:47][INFO:twinkle] GSM8K owner eval: prompts=320/1319 samples=320 accuracy=0.3500
+[2026-07-31 08:19:34][INFO:twinkle] GSM8K owner eval: prompts=336/1319 samples=336 accuracy=0.3482
+[2026-07-31 08:20:22][INFO:twinkle] GSM8K owner eval: prompts=352/1319 samples=352 accuracy=0.3466
+[2026-07-31 08:21:11][INFO:twinkle] GSM8K owner eval: prompts=368/1319 samples=368 accuracy=0.3451
+[2026-07-31 08:21:58][INFO:twinkle] GSM8K owner eval: prompts=384/1319 samples=384 accuracy=0.3438
+[2026-07-31 08:22:46][INFO:twinkle] GSM8K owner eval: prompts=400/1319 samples=400 accuracy=0.3500
+[2026-07-31 08:23:34][INFO:twinkle] GSM8K owner eval: prompts=416/1319 samples=416 accuracy=0.3486
+[2026-07-31 08:24:22][INFO:twinkle] GSM8K owner eval: prompts=432/1319 samples=432 accuracy=0.3472
+[2026-07-31 08:25:11][INFO:twinkle] GSM8K owner eval: prompts=448/1319 samples=448 accuracy=0.3482
+[2026-07-31 08:26:01][INFO:twinkle] GSM8K owner eval: prompts=464/1319 samples=464 accuracy=0.3448
+[2026-07-31 08:26:50][INFO:twinkle] GSM8K owner eval: prompts=480/1319 samples=480 accuracy=0.3479
+[2026-07-31 08:27:38][INFO:twinkle] GSM8K owner eval: prompts=496/1319 samples=496 accuracy=0.3589
+[2026-07-31 08:28:28][INFO:twinkle] GSM8K owner eval: prompts=512/1319 samples=512 accuracy=0.3594
+[2026-07-31 08:29:18][INFO:twinkle] GSM8K owner eval: prompts=528/1319 samples=528 accuracy=0.3655
+[2026-07-31 08:30:08][INFO:twinkle] GSM8K owner eval: prompts=544/1319 samples=544 accuracy=0.3621
+[2026-07-31 08:30:56][INFO:twinkle] GSM8K owner eval: prompts=560/1319 samples=560 accuracy=0.3625
+[2026-07-31 08:31:46][INFO:twinkle] GSM8K owner eval: prompts=576/1319 samples=576 accuracy=0.3663
+[2026-07-31 08:32:33][INFO:twinkle] GSM8K owner eval: prompts=592/1319 samples=592 accuracy=0.3632
+[2026-07-31 08:33:21][INFO:twinkle] GSM8K owner eval: prompts=608/1319 samples=608 accuracy=0.3651
+[2026-07-31 08:34:10][INFO:twinkle] GSM8K owner eval: prompts=624/1319 samples=624 accuracy=0.3686
+[2026-07-31 08:34:58][INFO:twinkle] GSM8K owner eval: prompts=640/1319 samples=640 accuracy=0.3688
+[2026-07-31 08:35:48][INFO:twinkle] GSM8K owner eval: prompts=656/1319 samples=656 accuracy=0.3689
+[2026-07-31 08:36:38][INFO:twinkle] GSM8K owner eval: prompts=672/1319 samples=672 accuracy=0.3720
+[2026-07-31 08:37:26][INFO:twinkle] GSM8K owner eval: prompts=688/1319 samples=688 accuracy=0.3721
+[2026-07-31 08:38:15][INFO:twinkle] GSM8K owner eval: prompts=704/1319 samples=704 accuracy=0.3693
+[2026-07-31 08:39:04][INFO:twinkle] GSM8K owner eval: prompts=720/1319 samples=720 accuracy=0.3681
+[2026-07-31 08:39:54][INFO:twinkle] GSM8K owner eval: prompts=736/1319 samples=736 accuracy=0.3696
+[2026-07-31 08:40:44][INFO:twinkle] GSM8K owner eval: prompts=752/1319 samples=752 accuracy=0.3684
+[2026-07-31 08:41:34][INFO:twinkle] GSM8K owner eval: prompts=768/1319 samples=768 accuracy=0.3672
+[2026-07-31 08:42:25][INFO:twinkle] GSM8K owner eval: prompts=784/1319 samples=784 accuracy=0.3648
+[2026-07-31 08:43:15][INFO:twinkle] GSM8K owner eval: prompts=800/1319 samples=800 accuracy=0.3675
+[2026-07-31 08:44:06][INFO:twinkle] GSM8K owner eval: prompts=816/1319 samples=816 accuracy=0.3627
+[2026-07-31 08:44:56][INFO:twinkle] GSM8K owner eval: prompts=832/1319 samples=832 accuracy=0.3654
+[2026-07-31 08:45:47][INFO:twinkle] GSM8K owner eval: prompts=848/1319 samples=848 accuracy=0.3691
+[2026-07-31 08:46:38][INFO:twinkle] GSM8K owner eval: prompts=864/1319 samples=864 accuracy=0.3704
+[2026-07-31 08:47:29][INFO:twinkle] GSM8K owner eval: prompts=880/1319 samples=880 accuracy=0.3739
+[2026-07-31 08:48:21][INFO:twinkle] GSM8K owner eval: prompts=896/1319 samples=896 accuracy=0.3739
+[2026-07-31 08:49:12][INFO:twinkle] GSM8K owner eval: prompts=912/1319 samples=912 accuracy=0.3783
+[2026-07-31 08:50:02][INFO:twinkle] GSM8K owner eval: prompts=928/1319 samples=928 accuracy=0.3761
+[2026-07-31 08:50:52][INFO:twinkle] GSM8K owner eval: prompts=944/1319 samples=944 accuracy=0.3739
+[2026-07-31 08:51:43][INFO:twinkle] GSM8K owner eval: prompts=960/1319 samples=960 accuracy=0.3729
+[2026-07-31 08:52:32][INFO:twinkle] GSM8K owner eval: prompts=976/1319 samples=976 accuracy=0.3699
+[2026-07-31 08:53:22][INFO:twinkle] GSM8K owner eval: prompts=992/1319 samples=992 accuracy=0.3700
+[2026-07-31 08:54:11][INFO:twinkle] GSM8K owner eval: prompts=1008/1319 samples=1008 accuracy=0.3690
+[2026-07-31 08:55:01][INFO:twinkle] GSM8K owner eval: prompts=1024/1319 samples=1024 accuracy=0.3662
+[2026-07-31 08:55:51][INFO:twinkle] GSM8K owner eval: prompts=1040/1319 samples=1040 accuracy=0.3663
+[2026-07-31 08:56:41][INFO:twinkle] GSM8K owner eval: prompts=1056/1319 samples=1056 accuracy=0.3674
+[2026-07-31 08:57:29][INFO:twinkle] GSM8K owner eval: prompts=1072/1319 samples=1072 accuracy=0.3629
+[2026-07-31 08:58:19][INFO:twinkle] GSM8K owner eval: prompts=1088/1319 samples=1088 accuracy=0.3585
+[2026-07-31 08:59:09][INFO:twinkle] GSM8K owner eval: prompts=1104/1319 samples=1104 accuracy=0.3560
+[2026-07-31 08:59:59][INFO:twinkle] GSM8K owner eval: prompts=1120/1319 samples=1120 accuracy=0.3563
+[2026-07-31 09:00:50][INFO:twinkle] GSM8K owner eval: prompts=1136/1319 samples=1136 accuracy=0.3583
+[2026-07-31 09:01:41][INFO:twinkle] GSM8K owner eval: prompts=1152/1319 samples=1152 accuracy=0.3602
+[2026-07-31 09:02:31][INFO:twinkle] GSM8K owner eval: prompts=1168/1319 samples=1168 accuracy=0.3596
+[2026-07-31 09:03:22][INFO:twinkle] GSM8K owner eval: prompts=1184/1319 samples=1184 accuracy=0.3581
+[2026-07-31 09:04:12][INFO:twinkle] GSM8K owner eval: prompts=1200/1319 samples=1200 accuracy=0.3592
+[2026-07-31 09:05:03][INFO:twinkle] GSM8K owner eval: prompts=1216/1319 samples=1216 accuracy=0.3594
+[2026-07-31 09:05:53][INFO:twinkle] GSM8K owner eval: prompts=1232/1319 samples=1232 accuracy=0.3596
+[2026-07-31 09:06:43][INFO:twinkle] GSM8K owner eval: prompts=1248/1319 samples=1248 accuracy=0.3606
+[2026-07-31 09:07:32][INFO:twinkle] GSM8K owner eval: prompts=1264/1319 samples=1264 accuracy=0.3608
+[2026-07-31 09:08:20][INFO:twinkle] GSM8K owner eval: prompts=1280/1319 samples=1280 accuracy=0.3617
+[2026-07-31 09:09:09][INFO:twinkle] GSM8K owner eval: prompts=1296/1319 samples=1296 accuracy=0.3642
+[2026-07-31 09:09:58][INFO:twinkle] GSM8K owner eval: prompts=1312/1319 samples=1312 accuracy=0.3651
+[2026-07-31 09:10:48][INFO:twinkle] GSM8K owner eval: prompts=1319/1319 samples=1319 accuracy=0.3647
+{
+  "model_id": "/mnt/lv_model/npu60005420a/models/Qwen3-4B",
+  "adapter_name": "",
+  "adapter_path": null,
+  "dataset_id": "/mnt/lv_model/npu60005420a/data/gsm8k_owner_aligned_20260729/twinkle_test_official.parquet",
+  "split": "test",
+  "protocol": {
+    "template": "Template",
+    "enable_thinking": true,
+    "processor": "GSM8KProcessor",
+    "reward": "GSM8KAccuracyReward",
+    "temperature": 0.6,
+    "top_p": 1.0,
+    "max_tokens": 1024
+  },
+  "eval/accuracy": 0.3646702047005307,
+  "eval/sample_count": 1319,
+  "eval/prompt_count": 1319,
+  "eval/completion_length": 954.7475360121304,
+  "eval/max_completion_length": 1024,
+  "eval/latency_s": 4073.4188023973256,
+  "predictions_path": "/mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_twinkle_base_manual_eval_official1319_npu3/predictions.jsonl"
+}
+[36m(vLLMSampler pid=1195388)[0m ERROR 07-31 09:10:48 [core_client.py:704] Engine core proc EngineCore died unexpectedly, shutting down client.
+[36m(vLLMSampler pid=1195388)[0m [2026-07-31 09:10:48][INFO:twinkle] Shutting down VLLMEngine...
+[36m(vLLMSampler pid=1195388)[0m [2026-07-31 09:10:48][WARNING:twinkle] Error during engine shutdown: object NoneType can't be used in 'await' expression
+QY_TWINKLE_MANUAL_EVAL_RC=0
+QY_TWINKLE_MANUAL_EVAL_ELAPSED_SECONDS=4266
+RESULT: OWNER_TWINKLE_BASE_MANUAL_EVAL_PASS

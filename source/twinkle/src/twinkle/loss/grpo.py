@@ -1,0 +1,467 @@
+# Copyright (c) ModelScope Contributors. All rights reserved.
+import numpy as np
+from typing import TYPE_CHECKING, Dict, List, Optional, Union
+
+from twinkle.data_format import LossOutput
+from twinkle.loss.base import Loss
+from twinkle.utils.torch_utils import selective_log_softmax
+
+if TYPE_CHECKING:
+    import torch
+
+
+class GRPOLoss(Loss):
+    """
+    GRPO (Group Relative Policy Optimization) Loss.
+
+    Args:
+        epsilon: Clipping epsilon for PPO objective (lower bound)
+        epsilon_high: Clipping epsilon for high importance sampling ratio (upper bound)
+        beta: KL penalty coefficient (0.0 = no KL penalty)
+        entropy_coef: Entropy bonus coefficient (0.0 = disabled). When > 0, the loss
+            subtracts ``entropy_coef * H(pi)`` per token to encourage exploration and
+            prevent mode-collapse / repetition. Requires the model forward to supply
+            ``outputs['entropies']`` — enabled automatically via ``require_entropy``.
+        ignore_index: Index to ignore in labels (default: -100)
+        normalization: ``sequence_mean`` gives every completion equal weight;
+            ``token_mean`` gives every valid completion token equal weight.
+    """
+
+    def __init__(
+        self,
+        epsilon: float = 0.2,
+        epsilon_high: Optional[float] = None,
+        beta: float = 0.0,
+        entropy_coef: float = 0.0,
+        ignore_index: int = -100,
+        normalization: str = 'sequence_mean',
+        **kwargs,
+    ):
+        if normalization not in ('sequence_mean', 'token_mean'):
+            raise ValueError(
+                f'normalization must be sequence_mean or token_mean, got {normalization!r}')
+        self.epsilon = epsilon
+        self.epsilon_high = epsilon_high if epsilon_high is not None else epsilon
+        self.beta = beta
+        self.entropy_coef = entropy_coef
+        # Gate the expensive entropy compute path in the model forward.
+        self.require_entropy = entropy_coef > 0.0
+        self.ignore_index = ignore_index
+        self.normalization = normalization
+
+    def micro_batch_scale(self, inputs, indices):
+        if self.normalization == 'token_mean':
+            return self.token_mean_micro_batch_scale(
+                inputs,
+                indices,
+                ignore_index=self.ignore_index,
+            )
+        return len(indices) / len(inputs)
+
+    def _compute_log_importance_weights(
+        self,
+        per_token_logps: 'torch.Tensor',
+        per_token_old_logps: 'torch.Tensor',
+        loss_mask: 'torch.Tensor',
+    ) -> 'torch.Tensor':
+        """
+        Compute log importance sampling weights.
+
+        Override this method in subclasses for different IS strategies.
+        Default: token-level importance sampling.
+
+        Args:
+            per_token_logps: [batch, seq_len] current policy log probabilities
+            per_token_old_logps: [batch, seq_len] old policy log probabilities
+            loss_mask: [batch, seq_len] mask for valid tokens
+
+        Returns:
+            log_weights: [batch, seq_len] log importance weights
+        """
+        import torch
+        log_ratio = per_token_logps - per_token_old_logps
+        # Clamp for numerical stability
+        log_ratio = torch.clamp(log_ratio, min=-20.0, max=20.0)
+        return log_ratio
+
+    def _compute_per_token_loss(
+        self,
+        ratio: 'torch.Tensor',
+        advantages: 'torch.Tensor',
+        per_token_logps: 'torch.Tensor',
+    ) -> 'torch.Tensor':
+        """
+        Compute per-token loss with PPO clipping.
+
+        Override this method in subclasses for different loss formulations.
+
+        Args:
+            ratio: [batch, seq_len] importance sampling ratio
+            advantages: [batch, 1] or [batch, seq_len] advantage values (already expanded)
+            per_token_logps: [batch, seq_len] current policy log probabilities
+
+        Returns:
+            per_token_loss: [batch, seq_len] loss for each token
+        """
+        import torch
+        clipped_ratio = torch.clamp(ratio, 1 - self.epsilon, 1 + self.epsilon_high)
+        loss1 = ratio * advantages
+        loss2 = clipped_ratio * advantages
+        return -torch.min(loss1, loss2)
+
+    def _aggregate_loss(
+        self,
+        per_token_loss: 'torch.Tensor',
+        loss_mask: 'torch.Tensor',
+        **kwargs,
+    ) -> 'torch.Tensor':
+        """
+        Aggregate per-token loss to scalar.
+
+        Override this method in subclasses for different normalization.
+        Default: mean over sequences, then mean over batch.
+
+        Args:
+            per_token_loss: [batch, seq_len] per-token loss values
+            loss_mask: [batch, seq_len] mask for valid tokens
+            **kwargs: Additional arguments for subclass implementations
+
+        Returns:
+            loss: scalar loss value
+        """
+        if self.normalization == 'token_mean':
+            return (per_token_loss * loss_mask).sum() / loss_mask.sum().clamp(min=1.0)
+
+        # Each sequence contributes equally regardless of length.
+        return ((per_token_loss * loss_mask).sum(-1) / loss_mask.sum(-1).clamp(min=1.0)).mean()
+
+    def _pad_and_align_to_batch(
+        self,
+        data: 'Union[torch.Tensor, List, np.ndarray]',
+        mask: 'torch.Tensor',
+        device: 'torch.device',
+        dtype: 'torch.dtype',
+        fill_value: float = 0.0,
+    ) -> 'torch.Tensor':
+        """Align data to mask: scalars broadcast, sequences scatter.
+
+        Two valid per-sample sequence forms are supported and disambiguated
+        by length:
+          * Response-only form (e.g. ``old_logps`` from vLLM): length equals
+            the number of trainable positions in ``mask[i]`` and is scattered
+            directly onto those positions.
+          * Full-sequence form (e.g. ``ref_logps`` from a ref-model forward,
+            right-padded to ``mask.shape[1]``): length ``>= mask.shape[1]``;
+            we slice to ``seq_len`` and index by ``mask[i]`` to extract the
+            trainable positions, then scatter.
+
+        Any other length is a real bug and triggers a hard assert — never
+        silently truncate, since that misaligns IS ratios to the wrong tokens.
+        """
+        import torch
+
+        batch_size, seq_len = mask.shape
+
+        # Convert to tensor if possible
+        if isinstance(data, np.ndarray):
+            data = torch.from_numpy(data)
+        if isinstance(data, torch.Tensor):
+            data = data.to(device=device, dtype=dtype)
+            if data.shape == (batch_size, seq_len):
+                return data  # Already aligned
+            if data.dim() == 1:
+                data = data.unsqueeze(1)
+            if data.shape[1] == 1:
+                assert data.shape[0] == batch_size, (
+                    f'scalar broadcast expects data.shape[0]==batch_size, '
+                    f'got data.shape={tuple(data.shape)} mask.shape={(batch_size, seq_len)}')
+                fill = torch.full((batch_size, seq_len), fill_value, dtype=dtype, device=device)
+                expanded = data.expand(batch_size, seq_len)
+                return torch.where(mask, expanded, fill)
+            data = [data[i] for i in range(batch_size)]  # To list
+
+        # Handle list (scalars or sequences)
+        if isinstance(data, (list, tuple)):
+            if all(isinstance(x, (int, float)) for x in data):  # Flat scalars
+                return self._pad_and_align_to_batch(
+                    torch.tensor(data, dtype=dtype, device=device), mask, device, dtype, fill_value)
+            data = [torch.as_tensor(s, dtype=dtype, device=device) for s in data]
+
+        # Scatter sequences
+        result = torch.full((batch_size, seq_len), fill_value, dtype=dtype, device=device)
+        for i, sample in enumerate(data):
+            sample = sample.flatten()
+            pos = mask[i].nonzero(as_tuple=True)[0]
+            n_pos = len(pos)
+            n_sample = sample.numel()
+
+            if n_sample == 1:
+                result[i, pos] = sample.item()
+            elif n_sample == n_pos:
+                # Response-only form (e.g. old_logps from vLLM).
+                result[i, pos] = sample
+            elif n_sample >= seq_len:
+                # Full-sequence form (e.g. ref_logps right-padded with ignore-value).
+                result[i, pos] = sample[:seq_len][mask[i]]
+            else:
+                raise AssertionError(f'data/mask length mismatch at sample {i}: '
+                                     f'n_pos={n_pos}, n_sample={n_sample}, seq_len={seq_len} '
+                                     '(expected n_sample == n_pos for response-only form, '
+                                     'or n_sample >= seq_len for full-sequence form)')
+
+        return result
+
+    def __call__(
+        self,
+        inputs: Dict,
+        outputs: Dict,
+        *,
+        old_logps: Optional[Union['torch.Tensor', List[List[float]]]] = None,
+        ref_logps: Optional['torch.Tensor'] = None,
+        advantages: Optional[Union['torch.Tensor', List[float], np.ndarray]] = None,
+        **kwargs,
+    ):
+        """
+        Compute GRPO loss.
+
+        Args:
+            inputs: Dict containing 'labels' [batch, seq_len].
+                In packing mode, the processor has already unpacked
+                logps and labels to [num_sequences, max_seq_len].
+            outputs: Dict containing either:
+                - 'logps': [batch, seq_len] pre-computed log probs, OR
+                - 'logits': [batch, seq_len, vocab] from which logps will be computed
+            old_logps: [batch, seq_len] or List[List[float]] log probs from old/sampling policy.
+                      Can have ragged per-sample lengths — will be padded and aligned
+                      automatically.  If None, uses current logps (on-policy, ratio=1).
+            ref_logps: Optional [batch, seq_len] reference model log probs for KL penalty.
+                      Same padding/alignment rules as old_logps.
+            advantages: advantage values
+            **kwargs: Additional arguments
+        """
+        import torch
+        labels = inputs.get('labels')
+        assert labels is not None, "inputs must contain 'labels'"
+        if not torch.is_tensor(labels):
+            labels = torch.as_tensor(labels)
+        if labels.dim() == 1:
+            labels = labels.unsqueeze(0)
+
+        logps = outputs.get('logps')
+        loss_mask = (labels != self.ignore_index).bool()
+        if logps is None:
+            logits = outputs.get('logits')
+            if logits.shape[1] != labels.shape[1]:
+                # some mllm return logits with image tokens, exclude here
+                logits = logits[:, -labels.shape[1]:]
+            masked_labels = labels.clone()
+            masked_labels[~loss_mask] = 0
+            logps = selective_log_softmax(logits, masked_labels)
+
+        device = logps.device
+
+        # ── Prepare old_logps ────────────────────────────────────────────
+        # old_logps may be ragged (List[List[float]]) containing only
+        # response-token log-probs, whereas logps covers the full padded
+        # sequence.  _pad_and_align_logps scatters them into the correct
+        # positions using loss_mask.
+        if old_logps is None:
+            old_logps = logps.detach()
+        else:
+            old_logps = self._pad_and_align_to_batch(
+                old_logps,
+                loss_mask,
+                device,
+                logps.dtype,
+            )
+
+        # ── Prepare ref_logps (same treatment) ──────────────────────────
+        if ref_logps is not None:
+            ref_logps = self._pad_and_align_to_batch(
+                ref_logps,
+                loss_mask,
+                device,
+                logps.dtype,
+            )
+
+        # GRPO loss is ill-defined without advantages (e.g. ref-logps-only forward,
+        # or eval/validation forwards). Return a zero loss that still flows through
+        # autograd so DDP/FSDP do not see unused params, and callers can harvest
+        # outputs['logps'] freely.
+        if advantages is None:
+            zero = logps.sum() * 0.0
+            return LossOutput(loss=zero, num_tokens=0)
+
+        advantages = self._pad_and_align_to_batch(
+            advantages,
+            loss_mask,
+            device,
+            logps.dtype,
+        )
+
+        # ── Compute loss ────────────────────────────────────────────────
+        log_importance_weights = self._compute_log_importance_weights(logps, old_logps, loss_mask)
+        ratio = torch.exp(log_importance_weights)
+
+        per_token_loss = self._compute_per_token_loss(ratio, advantages, logps)
+
+        if self.beta > 0.0 and ref_logps is not None:
+            per_token_kl = (torch.exp(ref_logps - logps) - (ref_logps - logps) - 1)
+            per_token_loss = per_token_loss + self.beta * per_token_kl
+
+        if self.entropy_coef > 0.0:
+            entropies = outputs.get('entropies')
+            assert entropies is not None, ('entropy_coef > 0 requires outputs[\'entropies\'] — make sure the '
+                                           "loss instance's require_entropy flag was set before the forward call.")
+            # entropies may come in fp32 from the kernel; cast to match logps dtype
+            # so the final per_token_loss stays consistent (bf16 under amp).
+            per_token_loss = per_token_loss - self.entropy_coef * entropies.to(per_token_loss.dtype)
+
+        loss = self._aggregate_loss(per_token_loss, loss_mask, **kwargs)
+
+        return LossOutput(loss=loss, num_tokens=0)
+
+
+class GSPOLoss(GRPOLoss):
+    """
+    GRPO with sequence-level importance sampling.
+
+    Instead of per-token IS weights, uses the average log ratio over the sequence.
+    """
+
+    def _compute_log_importance_weights(
+        self,
+        per_token_logps: 'torch.Tensor',
+        per_token_old_logps: 'torch.Tensor',
+        loss_mask: 'torch.Tensor',
+    ) -> 'torch.Tensor':
+        """Sequence-level importance sampling: use mean log ratio."""
+        import torch
+        log_ratio = per_token_logps - per_token_old_logps
+        log_ratio = torch.clamp(log_ratio, min=-20.0, max=20.0)
+        seq_level_log_weights = ((log_ratio * loss_mask).sum(-1) / loss_mask.sum(-1).clamp(min=1.0)).unsqueeze(-1)
+        return seq_level_log_weights
+
+
+class SAPOLoss(GRPOLoss):
+    """
+    SAPO (Soft-gated Advantage Policy Optimization) Loss.
+
+    Uses soft gating instead of hard clipping.
+    """
+
+    def __init__(
+        self,
+        epsilon: float = 0.2,
+        beta: float = 0.0,
+        tau_pos: float = 1.0,
+        tau_neg: float = 1.0,
+        ignore_index: int = -100,
+        **kwargs,
+    ):
+        super().__init__(epsilon=epsilon, beta=beta, ignore_index=ignore_index, **kwargs)
+        self.tau_pos = tau_pos
+        self.tau_neg = tau_neg
+
+    def _compute_per_token_loss(
+        self,
+        ratio: 'torch.Tensor',
+        advantages: 'torch.Tensor',
+        per_token_logps: 'torch.Tensor',
+    ) -> 'torch.Tensor':
+        """Soft-gated loss."""
+        import torch
+        gate_pos = torch.sigmoid(self.tau_pos * (ratio - 1)) * (4.0 / self.tau_pos)
+        gate_neg = torch.sigmoid(self.tau_neg * (ratio - 1)) * (4.0 / self.tau_neg)
+        is_positive = advantages > 0
+        soft_gate = torch.where(is_positive, gate_pos, gate_neg)
+        return -soft_gate * advantages
+
+
+class CISPOLoss(GRPOLoss):
+    """
+    CISPO (Clipped Importance Sampling Policy Optimization) Loss.
+
+    Clamps the IS weight and uses policy gradient.
+    """
+    def micro_batch_scale(self, inputs, indices):
+        return self.token_mean_micro_batch_scale(
+            inputs,
+            indices,
+            ignore_index=self.ignore_index,
+        )
+
+    def _compute_per_token_loss(
+        self,
+        ratio: 'torch.Tensor',
+        advantages: 'torch.Tensor',
+        per_token_logps: 'torch.Tensor',
+    ) -> 'torch.Tensor':
+        """Clamped ratio * advantage * log_prob."""
+        import torch
+
+        clamped_ratios = torch.clamp(ratio, max=1 + self.epsilon).detach()
+        return -clamped_ratios * advantages * per_token_logps
+
+    def _aggregate_loss(
+        self,
+        per_token_loss: 'torch.Tensor',
+        loss_mask: 'torch.Tensor',
+        **kwargs,
+    ) -> 'torch.Tensor':
+        """Sum over all tokens, divide by total token count."""
+        # Use provided num_items_in_batch if available, otherwise use mask sum
+        num_items = kwargs.get('num_items_in_batch', loss_mask.sum())
+        return (per_token_loss * loss_mask).sum() / num_items
+
+
+class BNPOLoss(GRPOLoss):
+    """
+    BNPO (Batch-Normalized Policy Optimization) Loss.
+
+    Normalizes by total completion tokens across batch.
+    """
+    def micro_batch_scale(self, inputs, indices):
+        return self.token_mean_micro_batch_scale(
+            inputs,
+            indices,
+            ignore_index=self.ignore_index,
+        )
+
+    def _aggregate_loss(
+        self,
+        per_token_loss: 'torch.Tensor',
+        loss_mask: 'torch.Tensor',
+        **kwargs,
+    ) -> 'torch.Tensor':
+        """Sum over all tokens, divide by total token count."""
+        return (per_token_loss * loss_mask).sum() / loss_mask.sum().clamp(min=1.0)
+
+
+class DRGRPOLoss(GRPOLoss):
+    """
+    DR-GRPO (Dynamic Ratio GRPO) Loss.
+
+    Normalizes by batch_size * max_completion_length for consistent gradients.
+    """
+
+    def __init__(
+        self,
+        epsilon: float = 0.2,
+        beta: float = 0.0,
+        max_completion_length: int = 1024,
+        ignore_index: int = -100,
+        **kwargs,
+    ):
+        super().__init__(epsilon=epsilon, beta=beta, ignore_index=ignore_index, **kwargs)
+        self.max_completion_length = max_completion_length
+
+    def _aggregate_loss(
+        self,
+        per_token_loss: 'torch.Tensor',
+        loss_mask: 'torch.Tensor',
+        **kwargs,
+    ) -> 'torch.Tensor':
+        """Normalize by batch_size * max_completion_length."""
+        batch_size = loss_mask.shape[0]
+        return (per_token_loss * loss_mask).sum() / (batch_size * self.max_completion_length)

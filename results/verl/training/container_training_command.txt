@@ -1,0 +1,5 @@
+container=qy_verl_cmp_20260727
+container_workdir=/mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_verl_full125_noeval_final_npu23/run_cwd
+ASCEND_RT_VISIBLE_DEVICES=2,3
+PYTORCH_NPU_ALLOC_CONF=unset
+python3 -u -m verl.trainer.main_ppo --config-name=qy_owner_verl_full125_noeval_final_npu23

@@ -1,0 +1,35 @@
+diff --git a/src/twinkle_agentic/async_rl/pipeline.py b/src/twinkle_agentic/async_rl/pipeline.py
+index 467835a..2ce6def 100644
+--- a/src/twinkle_agentic/async_rl/pipeline.py
++++ b/src/twinkle_agentic/async_rl/pipeline.py
+@@ -223,11 +223,11 @@ class AsyncMultiLoraGRPOPipeline:
+         sampler_config = raw_config['sampler']
+         total_gpus = model_dp + sampler_gpus
+         device_groups = [
+-            DeviceGroup('model', list(range(int(runtime['model_gpus']))), device_type='GPU'),
++            DeviceGroup('model', list(range(int(runtime['model_gpus']))), device_type='NPU'),
+             DeviceGroup(
+                 'sampler',
+                 list(range(int(runtime['model_gpus']), total_gpus)),
+-                device_type='GPU',
++                device_type='NPU',
+                 gpus_per_worker=sampler_tp,
+             ),
+         ]
+diff --git a/src/twinkle_agentic/async_rl/vllm_sampler_tq.py b/src/twinkle_agentic/async_rl/vllm_sampler_tq.py
+index ab1a67b..4867075 100644
+--- a/src/twinkle_agentic/async_rl/vllm_sampler_tq.py
++++ b/src/twinkle_agentic/async_rl/vllm_sampler_tq.py
+@@ -43,8 +43,10 @@ def _sample_responses_to_rollout_rows(
+         for sequence in response.sequences:
+             row = dict(source)
+             row.update(sequence.new_input_feature or {})
+-            row.setdefault('group_id', source['group_id'])
+-            row.setdefault('generation_idx', source['generation_idx'])
++            if 'group_id' in source:
++                row.setdefault('group_id', source['group_id'])
++            if 'generation_idx' in source:
++                row.setdefault('generation_idx', source['generation_idx'])
+             row['logprobs'] = _extract_sampled_token_logps(sequence.logprobs)
+             row['stop_reason'] = sequence.stop_reason
+             row['completion_length'] = len(sequence.tokens)

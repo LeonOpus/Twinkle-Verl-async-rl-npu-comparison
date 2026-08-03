@@ -1,0 +1,9 @@
+lora_meta: {'r': 16, 'lora_alpha': 16, 'task_type': 'CAUSAL_LM'}
+loading_model: /mnt/lv_model/npu60005420a/qy_owner_smoke_20260729/qy_owner_verl_smoke1_v4_npu23/checkpoints/global_step_1/actor/model_world_size_1_rank_0.pt
+lora_A: {'tensor_count': 252, 'element_count': 15335424, 'nonzero_tensors': 252, 'nonzero_elements': 15335424, 'max_abs': 0.019764229655265808}
+lora_B: {'tensor_count': 252, 'element_count': 17694720, 'nonzero_tensors': 252, 'nonzero_elements': 17694530, 'max_abs': 1.6999958461383358e-05}
+loading_optimizer: /mnt/lv_model/npu60005420a/qy_owner_smoke_20260729/qy_owner_verl_smoke1_v4_npu23/checkpoints/global_step_1/actor/optim_world_size_1_rank_0.pt
+optimizer_moments: {'tensor_count': 1008, 'element_count': 66060288, 'nonzero_tensors': 504, 'nonzero_elements': 35389060, 'max_abs': 0.00040114522562362254}
+optimizer_step_values: [1.0]
+RESULT: VERL_SMOKE_V4_LORA_ADAM_UPDATE_PASS
+RESULT: OWNER_VERL_SMOKE_V4_POSTFLIGHT_PASS

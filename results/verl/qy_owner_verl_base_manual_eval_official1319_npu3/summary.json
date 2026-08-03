@@ -1,0 +1,18 @@
+{
+  "eval/count": 1319,
+  "eval/correct": 466,
+  "eval/incorrect": 853,
+  "eval/accuracy": 0.35329795299469297,
+  "model_path": "/mnt/lv_model/npu60005420a/models/Qwen3-4B",
+  "adapter_path": "",
+  "protocol": {
+    "dataset": "official_gsm8k_test_1319",
+    "reward": "owner_gsm8k_accuracy_reward.compute_score",
+    "temperature": 0.6,
+    "top_p": 1.0,
+    "top_k": -1,
+    "n": 1,
+    "max_tokens": 1024,
+    "enable_thinking": true
+  }
+}

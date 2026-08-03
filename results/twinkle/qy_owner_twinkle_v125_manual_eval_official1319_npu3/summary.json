@@ -1,0 +1,23 @@
+{
+  "model_id": "/mnt/lv_model/npu60005420a/models/Qwen3-4B",
+  "adapter_name": "gsm8k_accuracy_lora",
+  "adapter_path": "/mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_twinkle_full125_noeval_final_npu23/run_cwd/output/async_single_lora_gsm8k_accuracy/async-gsm8k_accuracy_lora-v125",
+  "dataset_id": "/mnt/lv_model/npu60005420a/data/gsm8k_owner_aligned_20260729/twinkle_test_official.parquet",
+  "split": "test",
+  "protocol": {
+    "template": "Template",
+    "enable_thinking": true,
+    "processor": "GSM8KProcessor",
+    "reward": "GSM8KAccuracyReward",
+    "temperature": 0.6,
+    "top_p": 1.0,
+    "max_tokens": 1024
+  },
+  "eval/accuracy": 0.8862774829416225,
+  "eval/sample_count": 1319,
+  "eval/prompt_count": 1319,
+  "eval/completion_length": 550.7316148597422,
+  "eval/max_completion_length": 1024,
+  "eval/latency_s": 3426.558988135308,
+  "predictions_path": "/mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_twinkle_v125_manual_eval_official1319_npu3/predictions.jsonl"
+}

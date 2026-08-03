@@ -1,0 +1,8 @@
+?? tensorboard_log/
+?? verl/trainer/config/qy_owner_verl_base_manual_eval_official1319_npu3.yaml
+?? verl/trainer/config/qy_owner_verl_full125_noeval_final_npu23.yaml
+?? verl/trainer/config/qy_owner_verl_v125_manual_eval_official1319_npu3.yaml
+?? verl/trainer/config/qy_owner_verl_v125_merged_manual_eval_official1319_npu3.yaml
+?? verl/trainer/config/v1_separate_async_grpo_npu_2cards.yaml
+?? verl/trainer/config/v1_separate_async_grpo_npu_2cards.yaml.bucket2048_before_validation_oom_20260730
+?? verl/trainer/config/v1_separate_async_grpo_npu_2cards.yaml.owner_bucket256_20260729

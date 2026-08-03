@@ -1,0 +1,10 @@
+base=/mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_verl_full125_noeval_final_npu23/exported_hf_v125
+adapter=/mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_verl_full125_noeval_final_npu23/exported_hf_v125/lora_adapter
+merged=/mnt/lv_model/npu60005420a/qy_owner_experiments_20260730/qy_owner_verl_full125_noeval_final_npu23/merged_hf_v125_for_eval
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]Loading weights:  47%|████▋     | 187/398 [00:00<00:00, 1858.10it/s]Loading weights: 100%|██████████| 398/398 [00:00<00:00, 2191.81it/s]
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:09<00:00,  9.38s/it]Writing model shards: 100%|██████████| 1/1 [00:09<00:00,  9.38s/it]
+RESULT: VERL_V125_LORA_MERGE_MODEL_SAVED
+QY_VERL_V125_MERGE_RC=0
+QY_VERL_V125_MERGE_ELAPSED_SECONDS=71
+RESULT: VERL_V125_MERGE_FOR_EVAL_PASS
