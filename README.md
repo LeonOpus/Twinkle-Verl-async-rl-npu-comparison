@@ -57,7 +57,7 @@ Twinkle 使用 `GSM8KProcessor + GSM8KAccuracyReward`；VERL 通过 `main_genera
 
 ## 大文件与完整性
 
-普通 Git 不保存基础模型、checkpoint、optimizer、HF 导出模型、LoRA 权重和 Docker 镜像层。其路径、大小及 SHA256 位于：
+普通 Git 不保存基础模型、checkpoint、optimizer、HF 导出模型和 Docker 镜像层。其路径、大小及 SHA256 位于：
 
 - `manifests/excluded_large_artifacts.tsv`
 - `manifests/excluded_large_artifacts.sha256`
@@ -65,6 +65,10 @@ Twinkle 使用 `GSM8KProcessor + GSM8KAccuracyReward`；VERL 通过 `main_genera
 上传文件 SHA256 位于 `manifests/included_files.sha256`；敏感信息扫描位于 `manifests/security_scan.txt`。
 
 四组评测的完整推理回答、ground truth 和计分结果保存在各实验目录的 `predictions.jsonl` 中。
+
+## 第二阶段 LoRA 权重（2026-08-04）
+
+两套 v125 LoRA adapter 已通过 Git LFS 保存于 `lora_weights/stage2_20260804/`，并附 SHA256 清单；不包含基础模型、optimizer、完整 checkpoint 或合并模型。
 
 ## License
 

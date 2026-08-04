@@ -16,3 +16,6 @@ id_rsa*
 __pycache__/
 *.pyc
 .ray/
+
+# Final LoRA adapters via Git LFS
+!lora_weights/**/*.safetensors
