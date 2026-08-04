@@ -1,0 +1,31 @@
+{
+  "scope": "training_only",
+  "base_model": "Qwen3-4B",
+  "workload": {
+    "optimizer_steps": 125,
+    "trajectories": 8000,
+    "training_evaluation_enabled": false,
+    "rollout_temperature": 1.0,
+    "rollout_max_tokens": 1024
+  },
+  "twinkle": {
+    "runner_elapsed_seconds": 11705,
+    "runner_elapsed_hms": "03:15:05",
+    "framework_wall_time_seconds": 11276.259701658972,
+    "all_125_reward_mean": 0.67325,
+    "last_25_reward_mean": 0.90125,
+    "final_step_reward": 0.890625
+  },
+  "verl": {
+    "runner_elapsed_seconds": 18991,
+    "runner_elapsed_hms": "05:16:31",
+    "all_125_reward_mean": 0.39125,
+    "last_25_reward_mean": 0.39625,
+    "final_step_reward": 0.40625
+  },
+  "comparison": {
+    "verl_over_twinkle_elapsed_ratio": 1.6224690303289193,
+    "twinkle_time_saved_seconds": 7286,
+    "twinkle_time_saved_hms": "02:01:26"
+  }
+}

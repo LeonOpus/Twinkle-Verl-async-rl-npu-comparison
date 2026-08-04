@@ -3,3 +3,5 @@
 *.parquet binary
 *.tfevents.* binary
 lora_weights/**/adapter_model.safetensors filter=lfs diff=lfs merge=lfs -text
+results/stage2_20260804/training/**/*.log filter=lfs diff=lfs merge=lfs -text
+results/stage2_20260804/training/reward_curves/reward_curves_125_steps.csv binary

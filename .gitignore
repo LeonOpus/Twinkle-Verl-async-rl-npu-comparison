@@ -19,3 +19,6 @@ __pycache__/
 
 # Final LoRA adapters via Git LFS
 !lora_weights/**/*.safetensors
+
+# Stage-2 training logs via Git LFS
+!results/stage2_20260804/training/**/*.log

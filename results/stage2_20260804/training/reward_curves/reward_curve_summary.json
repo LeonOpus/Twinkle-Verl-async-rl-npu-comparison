@@ -1,0 +1,50 @@
+{
+  "metric": "training_rollout_binary_accuracy_reward",
+  "sample_count_per_step": 64,
+  "steps": 125,
+  "twinkle": {
+    "point_count": 125,
+    "step_1": 0.34375,
+    "step_125": 0.890625,
+    "first_10_mean": 0.3890625,
+    "last_10_mean": 0.9140625,
+    "all_125_mean": 0.67325,
+    "blocks_25_steps": {
+      "1-25": 0.359375,
+      "26-50": 0.546875,
+      "51-75": 0.71875,
+      "76-100": 0.84,
+      "101-125": 0.90125
+    },
+    "best_step": 90,
+    "best_reward": 0.984375,
+    "worst_step": 20,
+    "worst_reward": 0.203125,
+    "linear_slope_per_step": 0.005471486175115208,
+    "last25_minus_first25": 0.541875
+  },
+  "verl": {
+    "point_count": 125,
+    "step_1": 0.21875,
+    "step_125": 0.40625,
+    "first_10_mean": 0.36875,
+    "last_10_mean": 0.3984375,
+    "all_125_mean": 0.39125,
+    "blocks_25_steps": {
+      "1-25": 0.340625,
+      "26-50": 0.429375,
+      "51-75": 0.393125,
+      "76-100": 0.396875,
+      "101-125": 0.39625
+    },
+    "best_step": 102,
+    "best_reward": 0.65625,
+    "worst_step": 23,
+    "worst_reward": 0.15625,
+    "linear_slope_per_step": 0.00033736559139784926,
+    "last25_minus_first25": 0.05562499999999998
+  },
+  "final_step_difference_twinkle_minus_verl": 0.484375,
+  "all_steps_mean_difference_twinkle_minus_verl": 0.28200000000000003,
+  "last25_mean_difference_twinkle_minus_verl": 0.505
+}
