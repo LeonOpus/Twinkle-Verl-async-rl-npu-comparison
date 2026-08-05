@@ -5,7 +5,7 @@ This directory preserves the reward code used to check Twinkle and VERL reward s
 Conclusion:
 
 - Twinkle training uses `GSM8KAccuracyReward` from `twinkle_gsm8k_reward.py`.
-- VERL training and the final unified evaluator use `compute_score` from `owner_gsm8k_accuracy_reward.py`.
+- VERL training and the final unified evaluator use `compute_score` from `verl_owner_gsm8k_reward.py`.
 - The scoring semantics are equivalent:
   - inspect the final 500 characters of the completion;
   - prefer the last valid `\boxed{...}` answer;
