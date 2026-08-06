@@ -7,5 +7,4 @@ results/stage2_20260804/training/**/*.log filter=lfs diff=lfs merge=lfs -text
 results/stage2_20260804/training/reward_curves/reward_curves_125_steps.csv binary
 results/stage2_20260804/evaluation/**/predictions.jsonl filter=lfs diff=lfs merge=lfs -text
 results/stage2_20260804/evaluation/logs/*.log filter=lfs diff=lfs merge=lfs -text
-results/stage2_20260806/verl_full125_rollout_diagnosis/rollouts/*.jsonl filter=lfs diff=lfs merge=lfs -text
 results/stage2_20260806/verl_full125_rollout_diagnosis/logs/*.log filter=lfs diff=lfs merge=lfs -text
