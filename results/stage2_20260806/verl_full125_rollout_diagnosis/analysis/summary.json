@@ -1,0 +1,105 @@
+{
+  "total_rows": 8000,
+  "steps": 125,
+  "reward_mismatches": 0,
+  "reward_mean": 0.388625,
+  "budget_hit_rate_chars_ge3500": 0.30475,
+  "answer_anywhere_rate": 0.492875,
+  "answer_last500_rate": 0.397875,
+  "garbled_rate": 0.007375,
+  "last25_reward_mean": 0.391875,
+  "last25_budget_hit_rate": 0.3,
+  "last25_garbled_rate": 0.003125,
+  "tail_steps": {
+    "116": {
+      "count": 64,
+      "reward_mean": 0.3125,
+      "budget_hit_rate": 0.3125,
+      "answer_anywhere_rate": 0.4375,
+      "answer_last500_rate": 0.3125,
+      "garbled_rate": 0.03125,
+      "avg_chars": 3348.625
+    },
+    "117": {
+      "count": 64,
+      "reward_mean": 0.3125,
+      "budget_hit_rate": 0.359375,
+      "answer_anywhere_rate": 0.453125,
+      "answer_last500_rate": 0.34375,
+      "garbled_rate": 0,
+      "avg_chars": 3194.15625
+    },
+    "118": {
+      "count": 64,
+      "reward_mean": 0.421875,
+      "budget_hit_rate": 0.390625,
+      "answer_anywhere_rate": 0.484375,
+      "answer_last500_rate": 0.421875,
+      "garbled_rate": 0,
+      "avg_chars": 3150.171875
+    },
+    "119": {
+      "count": 64,
+      "reward_mean": 0.3125,
+      "budget_hit_rate": 0.234375,
+      "answer_anywhere_rate": 0.484375,
+      "answer_last500_rate": 0.3125,
+      "garbled_rate": 0,
+      "avg_chars": 3173.03125
+    },
+    "120": {
+      "count": 64,
+      "reward_mean": 0.421875,
+      "budget_hit_rate": 0.28125,
+      "answer_anywhere_rate": 0.578125,
+      "answer_last500_rate": 0.4375,
+      "garbled_rate": 0,
+      "avg_chars": 3126.40625
+    },
+    "121": {
+      "count": 64,
+      "reward_mean": 0.328125,
+      "budget_hit_rate": 0.265625,
+      "answer_anywhere_rate": 0.359375,
+      "answer_last500_rate": 0.328125,
+      "garbled_rate": 0,
+      "avg_chars": 3078.765625
+    },
+    "122": {
+      "count": 64,
+      "reward_mean": 0.546875,
+      "budget_hit_rate": 0.296875,
+      "answer_anywhere_rate": 0.609375,
+      "answer_last500_rate": 0.546875,
+      "garbled_rate": 0,
+      "avg_chars": 3070.4375
+    },
+    "123": {
+      "count": 64,
+      "reward_mean": 0.46875,
+      "budget_hit_rate": 0.203125,
+      "answer_anywhere_rate": 0.515625,
+      "answer_last500_rate": 0.46875,
+      "garbled_rate": 0,
+      "avg_chars": 2947.578125
+    },
+    "124": {
+      "count": 64,
+      "reward_mean": 0.4375,
+      "budget_hit_rate": 0.375,
+      "answer_anywhere_rate": 0.578125,
+      "answer_last500_rate": 0.453125,
+      "garbled_rate": 0,
+      "avg_chars": 3101.921875
+    },
+    "125": {
+      "count": 64,
+      "reward_mean": 0.375,
+      "budget_hit_rate": 0.25,
+      "answer_anywhere_rate": 0.53125,
+      "answer_last500_rate": 0.390625,
+      "garbled_rate": 0.015625,
+      "avg_chars": 3049.25
+    }
+  }
+}
